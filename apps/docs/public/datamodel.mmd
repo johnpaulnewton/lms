@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
     USER {
         int user_id PK
@@ -52,11 +53,11 @@ erDiagram
         date posted_date
     }
 
-    USER ||--o{ ENROLLMENT
-    COURSE ||--o{ ENROLLMENT
-    COURSE ||--o{ MODULE
-    COURSE ||--o{ ASSIGNMENT
-    COURSE ||--o{ ANNOUNCEMENT
-    ASSIGNMENT ||--o{ SUBMISSION
-    USER ||--o{ SUBMISSION
-    USER ||--o{ COURSE
+    USER ||--o{ ENROLLMENT :
+    COURSE ||--o{ ENROLLMENT :
+    COURSE ||--o{ MODULE :
+    COURSE ||--o{ ASSIGNMENT :
+    COURSE ||--o{ ANNOUNCEMENT :
+    ASSIGNMENT ||--o{ SUBMISSION :
+    USER ||--o{ SUBMISSION :
+    USER ||--o{ COURSE :
