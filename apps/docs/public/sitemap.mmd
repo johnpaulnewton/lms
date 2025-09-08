@@ -1,0 +1,46 @@
+flowchart TD
+    A["Login / Register"] --> B["Dashboard"]
+
+    B -- Student --> S["Student Dashboard"]
+    S --> C["All Courses"]
+    S --> D["Assignments"]
+    S --> F["Grades"]
+    S --> H["Profile"]
+    
+    C --> C2["Individual Course Details"]
+    C2 --> C2a["Announcements"]
+    C2 --> C2b["Modules/ Lessons"]
+    C2 --> C2c["Assignments Submit"]
+    C2 --> C2f["Grades"]
+    
+    D --> D1["Individual Assignment Details/ Submission Page"]
+    F --> F1["Individual Course Grades"]
+    F --> F2["Overall Transcript"]
+    H --> H2["Settings"]
+    
+    B -- Instructor --> I["Instructor Dashboard"]
+    I --> IC["All Courses"]
+    I --> IH["Profile"]
+    
+    IC --> IC2["Individual Course Details"]
+    IC2 --> IC2a["Announcements Post/Edit"]
+    IC2 --> IC2b["Modules/ Lessons Manage"]
+    IC2 --> IC2c["Assignments Create/Grade"]
+    IC2 --> IC2f["Grades View/Adjust"]
+    
+    IH --> IH2["Settings"]
+    
+    B -- Admin --> AD["Admin Dashboard"]
+    AD --> AE["User Management"]
+    AD --> AC["Course Management"]
+    
+    AE --> AE2["Create Instructor"]
+    AE --> AE3["Create Student"]
+    AE --> n2["Manage Users"]
+    
+    AC --> AC1["Create Course"]
+    AC --> AC2["Manage Courses"]
+    AC2 --> n3["Enrollment"]
+
+    C2c --> D1
+    C2f --> F1
