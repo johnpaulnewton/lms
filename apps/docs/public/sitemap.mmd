@@ -3,19 +3,18 @@ flowchart TD
 
     B -- Student --> S["Student Dashboard"]
     S --> C["All Courses"]
-    S --> D["Assignments"]
-    S --> F["Grades"]
+    S --> D["All Assignments"]
+    S --> F["All Grades"]
     S --> H["Profile"]
     
     C --> C2["Individual Course Details"]
     C2 --> C2a["Announcements"]
     C2 --> C2b["Modules/ Lessons"]
-    C2 --> C2c["Assignments Submit"]
-    C2 --> C2f["Grades"]
+    C2 --> C2c["All Course Assignments"]
+    C2 --> C2f["All Course Grades"]
     
     D --> D1["Individual Assignment Details/ Submission Page"]
     F --> F1["Individual Course Grades"]
-    F --> F2["Overall Transcript"]
     H --> H2["Settings"]
     
     B -- Instructor --> I["Instructor Dashboard"]

@@ -52,11 +52,11 @@ erDiagram
         date posted_date
     }
 
-    USER ||--o{ ENROLLMENT : enrolls
-    COURSE ||--o{ ENROLLMENT : "has students"
-    COURSE ||--o{ MODULE : "has modules"
-    COURSE ||--o{ ASSIGNMENT : "has assignments"
-    COURSE ||--o{ ANNOUNCEMENT : "has announcements"
-    ASSIGNMENT ||--o{ SUBMISSION : "has submissions"
-    USER ||--o{ SUBMISSION : "submits"
-    USER ||--o{ COURSE : "teaches" 
+    USER ||--o{ ENROLLMENT
+    COURSE ||--o{ ENROLLMENT
+    COURSE ||--o{ MODULE
+    COURSE ||--o{ ASSIGNMENT
+    COURSE ||--o{ ANNOUNCEMENT
+    ASSIGNMENT ||--o{ SUBMISSION
+    USER ||--o{ SUBMISSION
+    USER ||--o{ COURSE
