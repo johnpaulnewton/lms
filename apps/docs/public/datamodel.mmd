@@ -4,7 +4,7 @@ erDiagram
         string first_name
         string last_name
         string email
-        string role
+        string role "Student, Instructor, Admin"
     }
 
     COURSE {
@@ -52,11 +52,11 @@ erDiagram
         date posted_date
     }
 
-    USER ||--o{ ENROLLMENT :
-    COURSE ||--o{ ENROLLMENT :
-    COURSE ||--o{ MODULE :
-    COURSE ||--o{ ASSIGNMENT :
-    COURSE ||--o{ ANNOUNCEMENT :
-    ASSIGNMENT ||--o{ SUBMISSION :
-    USER ||--o{ SUBMISSION :
-    USER ||--o{ COURSE :
+    USER ||--o{ ENROLLMENT : "enrolls"
+    COURSE ||--o{ ENROLLMENT : "has"
+    COURSE ||--o{ MODULE : "contains"
+    COURSE ||--o{ ASSIGNMENT : "has"
+    COURSE ||--o{ ANNOUNCEMENT : "posts"
+    ASSIGNMENT ||--o{ SUBMISSION : "receives"
+    USER ||--o{ SUBMISSION : "makes"
+    USER ||--o{ COURSE : "teaches"
