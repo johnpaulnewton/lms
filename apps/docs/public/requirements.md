@@ -29,7 +29,6 @@
 - The system shall allow students to view their profile information.
 - The system shall allow students to update their profile and account settings.
 
----
 
 ## Instructor
 **User Stories**
@@ -56,7 +55,6 @@
 - The system shall allow instructors to view their profile information.
 - The system shall allow instructors to update their profile and account settings.
 
----
 
 ## Admin
 **User Stories**
