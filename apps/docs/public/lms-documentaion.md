@@ -16,10 +16,9 @@ Visual representation of the LMS frontend pages and navigation structure using M
 [View Site Map](sitemap.mmd)
 
 ### 3. Wireframes
-Design mockups of major screens in the LMS:
-
--
+Design mockups of major screens in the LMS.
+[View Wireframes](wiredrames.pdf)
 
 ### 4. Data Model
-Basic data model outlining the core entities (tables) of the LMS and their attributes (columns).
+Basic data model outlining the core entities of the LMS and their attributes.
 [Open Data Model](datamodel.mmd)
