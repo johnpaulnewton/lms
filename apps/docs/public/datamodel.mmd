@@ -41,7 +41,15 @@ erDiagram
         int assignment_id FK
         int student_id FK
         date submission_date
-        string grade
+    }
+
+    GRADE {
+        int grade_id PK
+        int submission_id FK
+        int grader_id FK "Instructor"
+        string grade_value
+        string feedback
+        date graded_date
     }
 
     ANNOUNCEMENT {
@@ -58,5 +66,7 @@ erDiagram
     COURSE ||--o{ ASSIGNMENT : "has"
     COURSE ||--o{ ANNOUNCEMENT : "posts"
     ASSIGNMENT ||--o{ SUBMISSION : "receives"
+    SUBMISSION ||--o{ GRADE : "gets"
     USER ||--o{ SUBMISSION : "makes"
     USER ||--o{ COURSE : "has"
+    USER ||--o{ GRADE : "gives"
