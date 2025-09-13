@@ -28,6 +28,7 @@
 - The system shall allow students to view their cumulative grades across all courses.
 - The system shall allow students to view their profile information.
 - The system shall allow students to update their profile and account settings.
+-The system shall require students to complete the daily Wordle and enter the correct word in a submission box before their assignment can be submitted.
 
 
 ## Instructor
