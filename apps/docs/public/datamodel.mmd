@@ -19,7 +19,7 @@ erDiagram
         int course_id FK
         int user_id FK
         string enrollment_date
-        string role  // e.g., Student, Instructor, TA
+        string role
     }
 
     MODULE {
@@ -43,7 +43,7 @@ erDiagram
         int user_id FK
         date submission_date
         text content
-        string file_path  // optional
+        string file_path
     }
 
     GRADE {
