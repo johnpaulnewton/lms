@@ -1,67 +1,67 @@
 erDiagram
     USER {
-        int user_id PK
-        string first_name
-        string last_name
-        string email UNIQUE
-        string password_hash
-        bool is_admin
+        user_id PK
+        first_name
+        last_name
+        email UNIQUE
+        password_hash
+        is_admin "boolean"
     }
 
     COURSE {
-        int course_id PK
-        string course_name
-        string description
+        course_id PK
+        course_name
+        description
     }
 
     ENROLLMENT {
-        int enrollment_id PK
-        int course_id FK
-        int user_id FK
-        date enrollment_date
-        string role "Student, Instructor, TA"
+        enrollment_id PK
+        course_id FK
+        user_id FK
+        enrollment_date
+        role "Student, Instructor, TA"
     }
 
     MODULE {
-        int module_id PK
-        int course_id FK
-        string title
-        string content
+        module_id PK
+        course_id FK
+        title
+        content
     }
 
     ASSIGNMENT {
-        int assignment_id PK
-        int course_id FK
-        string title
-        string description
-        date due_date
+        assignment_id PK
+        course_id FK
+        title
+        description
+        due_date
     }
 
     SUBMISSION {
-        int submission_id PK
-        int assignment_id FK
-        int user_id FK
-        date submission_date
-        text content NULL
-        string file_path NULL
+        submission_id PK
+        assignment_id FK
+        user_id FK
+        submission_date
+        content "text"
+        file_path "string (optional)"
     }
 
     GRADE {
-        int grade_id PK
-        int submission_id FK
-        int grader_id FK
-        string grade_value
-        string feedback
-        date graded_date
+        grade_id PK
+        submission_id FK
+        grader_id FK
+        grade_value
+        feedback
+        graded_date
     }
 
     ANNOUNCEMENT {
-        int announcement_id PK
-        int course_id FK
-        int author_id FK
-        string title
-        string content
-        date posted_date
+        announcement_id PK
+        course_id FK
+        author_id FK
+        title
+        content
+        posted_date
     }
 
     USER ||--o{ ENROLLMENT : "participates in"
