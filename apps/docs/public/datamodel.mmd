@@ -3,22 +3,23 @@ erDiagram
         int user_id PK
         string first_name
         string last_name
-        string email
-        string role "Student, Instructor, Admin"
+        string email UNIQUE
+        string password_hash
+        bool is_admin
     }
 
     COURSE {
         int course_id PK
         string course_name
         string description
-        int instructor_id FK
     }
 
     ENROLLMENT {
         int enrollment_id PK
         int course_id FK
-        int student_id FK
+        int user_id FK
         date enrollment_date
+        string role "Student, Instructor, TA"
     }
 
     MODULE {
@@ -39,14 +40,16 @@ erDiagram
     SUBMISSION {
         int submission_id PK
         int assignment_id FK
-        int student_id FK
+        int user_id FK
         date submission_date
+        text content NULL
+        string file_path NULL
     }
 
     GRADE {
         int grade_id PK
         int submission_id FK
-        int grader_id FK "Instructor"
+        int grader_id FK
         string grade_value
         string feedback
         date graded_date
@@ -55,19 +58,19 @@ erDiagram
     ANNOUNCEMENT {
         int announcement_id PK
         int course_id FK
+        int author_id FK
         string title
         string content
         date posted_date
     }
 
-    USER ||--o{ ENROLLMENT : "enrolls"
-    COURSE ||--o{ ENROLLMENT : "has"
-    COURSE ||--o{ MODULE : "contains"
-    COURSE ||--o{ ASSIGNMENT : "has"
-    COURSE ||--o{ ANNOUNCEMENT : "posts"
-    ASSIGNMENT ||--o{ SUBMISSION : "receives"
-    SUBMISSION ||--o{ GRADE : "gets"
-    USER ||--o{ SUBMISSION : "makes"
-    USER ||--o{ COURSE : "has"
-    USER ||--o{ GRADE : "gives"
-    
+    USER ||--o{ ENROLLMENT : "participates in"
+    COURSE ||--o{ ENROLLMENT : "has members"
+    COURSE ||--o{ MODULE : "includes"
+    COURSE ||--o{ ASSIGNMENT : "offers"
+    COURSE ||--o{ ANNOUNCEMENT : "publishes"
+    ASSIGNMENT ||--o{ SUBMISSION : "is submitted to"
+    SUBMISSION ||--o{ GRADE : "receives"
+    USER ||--o{ SUBMISSION : "creates"
+    USER ||--o{ GRADE : "assigns"
+    USER ||--o{ ANNOUNCEMENT : "writes"

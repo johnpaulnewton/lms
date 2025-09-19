@@ -23,7 +23,7 @@
 - The system shall allow students to view all assignments within a course.
 - The system shall allow students to view all assignments across all enrolled courses.
 - The system shall allow students to view details of an assignment, including due date, description, and submission status.
-- The system shall allow students to upload and submit assignments.
+- The system shall allow stgit udents to upload and submit assignments.
 - The system shall allow students to view grades for assignments within a specific course.
 - The system shall allow students to view their cumulative grades across all courses.
 - The system shall allow students to view their profile information.
