@@ -19,6 +19,10 @@ model User {
   lastName      String
   role          UserRole
   passwordHash  String
+  enrollments   Enrollment[]
+  submissions   Submission[]
+  gradesGiven   Grade[]       @relation("GradesGiven")
+  announcements Announcement[]
 }
 
 model Course {
@@ -26,6 +30,9 @@ model Course {
   title         String
   description   String
   enrollments   Enrollment[]
+  modules       Module[]
+  assignments   Assignment[]
+  announcements Announcement[]
 }
 
 model Module {
@@ -53,6 +60,7 @@ model Assignment {
   title         String
   description   String
   dueDate       DateTime
+  submissions     Submission[]
 }
 
 model Submission {
