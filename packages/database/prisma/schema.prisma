@@ -71,15 +71,15 @@ model Submission {
   user            User        @relation(fields: [userId], references: [id])
   submissionDate  DateTime
   content         String
-  grade           Grade?
+  grade           Grade?      @relation("SubmissionGrade")
 }
 
 model Grade {
   id              String      @id @default(cuid())
-  submissionId    String
-  submission      Submission  @relation(fields: [submissionId], references: [id])
+  submissionId    String      @unique
+  submission      Submission  @relation("SubmissionGrade", fields: [submissionId], references: [id])
   graderId        String
-  grader          User        @relation(fields: [graderId], references: [id])
+  grader          User        @relation("GradesGiven", fields: [graderId], references: [id])
   feedback        String
   gradedDate      DateTime
 }
