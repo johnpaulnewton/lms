@@ -13,8 +13,85 @@ generator client {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
+  id            String        @id @default(cuid())
+  email         String        @unique
+  firstName     String
+  lastName      String
+  role          UserRole
+  passwordHash  String
+}
+
+model Course {
+  id            String         @id @default(cuid())
+  title         String
+  description   String
+  enrollments   Enrollment[]
+}
+
+model Module {
+  id            String        @id @default(cuid())
+  courseId      String
+  course        Course        @relation(fields: [courseId], references: [id])
+  title         String
+  content       String
+}
+
+model Enrollment {
+  id            String        @id @default(cuid())
+  courseId      String
+  course        Course        @relation(fields: [courseId], references: [id])
+  userId        String
+  user          User          @relation(fields: [userId], references: [id])
+  term          String
+  role          EnrollmentRole
+}
+
+model Assignment {
+  id            String        @id @default(cuid())
+  courseId      String
+  course        Course        @relation(fields: [courseId], references: [id])
+  title         String
+  description   String
+  dueDate       DateTime
+}
+
+model Submission {
+  id              String      @id @default(cuid())
+  assignmentId    String
+  assignment      Assignment  @relation(fields: [assignmentId], references: [id])
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  submissionDate  DateTime
+  content         String
+  grade           Grade?
+}
+
+model Grade {
+  id              String      @id @default(cuid())
+  submissionId    String
+  submission      Submission  @relation(fields: [submissionId], references: [id])
+  graderId        String
+  grader          User        @relation(fields: [graderId], references: [id])
+  feedback        String
+  gradedDate      DateTime
+}
+
+model Announcement {
+  id            String        @id @default(cuid())
+  courseId      String
+  course        Course        @relation(fields: [courseId], references: [id])
+  authorId      String
+  author        User          @relation(fields: [authorId], references: [id])
+  title         String
+  content       String
+  postedDate    DateTime
+}
+
+enum UserRole {
+  USER 
+  ADMIN
+}
+enum EnrollmentRole {
+  STUDENT
+  INSTRUCTOR
 }
