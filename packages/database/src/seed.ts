@@ -1,73 +1,105 @@
-import { prisma } from "./client";
+import { PrismaClient } from "../generated/client";
 
-const users = [
-  { id: "user1", email: "alice@example.com", firstName: "Alice", lastName: "Wonderland", role: "USER", passwordHash: "hashed_pw1" },
-  { id: "user2", email: "bob@example.com", firstName: "Bob", lastName: "Builder", role: "ADMIN", passwordHash: "hashed_pw2" },
-  { id: "user3", email: "carol@example.com", firstName: "Carol", lastName: "Danvers", role: "USER", passwordHash: "hashed_pw3" },
-  { id: "user4", email: "dave@example.com", firstName: "Dave", lastName: "Grohl", role: "USER", passwordHash: "hashed_pw4" },
-];
-
-const courses = [
-  { id: "course1", title: "Intro to CS", description: "Learn the basics of programming" },
-  { id: "course2", title: "Advanced Databases", description: "Explore relational and NoSQL systems" },
-  { id: "course3", title: "Web Development", description: "Frontend and backend web development" },
-];
-
-const modules = [
-  { id: "module1", courseId: "course1", title: "Variables & Types", content: "Intro to variables, types, and operators." },
-  { id: "module2", courseId: "course1", title: "Control Flow", content: "If statements, loops, and functions." },
-  { id: "module3", courseId: "course2", title: "Indexes & Performance", content: "Database indexing strategies." },
-  { id: "module4", courseId: "course3", title: "HTML & CSS", content: "Basics of HTML structure and styling." },
-  { id: "module5", courseId: "course3", title: "Node.js Backend", content: "Building server-side applications." },
-];
-
-const enrollments = [
-  { id: "enroll1", courseId: "course1", userId: "user1", term: "Fall 2025", role: "STUDENT" },
-  { id: "enroll2", courseId: "course1", userId: "user3", term: "Fall 2025", role: "STUDENT" },
-  { id: "enroll3", courseId: "course2", userId: "user2", term: "Fall 2025", role: "INSTRUCTOR" },
-  { id: "enroll4", courseId: "course3", userId: "user4", term: "Fall 2025", role: "STUDENT" },
-  { id: "enroll5", courseId: "course3", userId: "user2", term: "Fall 2025", role: "INSTRUCTOR" },
-];
-
-const assignments = [
-  { id: "assign1", courseId: "course1", title: "Hello World Program", description: "Write your first program", dueDate: new Date("2025-10-01") },
-  { id: "assign2", courseId: "course1", title: "Loops Practice", description: "Write programs using loops", dueDate: new Date("2025-10-10") },
-  { id: "assign3", courseId: "course2", title: "Database Project", description: "Design a schema for a sample app", dueDate: new Date("2025-11-15") },
-  { id: "assign4", courseId: "course3", title: "Build a Webpage", description: "Create a simple HTML/CSS page", dueDate: new Date("2025-10-20") },
-];
-
-const submissions = [
-  { id: "sub1", assignmentId: "assign1", userId: "user1", submissionDate: new Date("2025-09-15"), content: "console.log('Hello World');" },
-  { id: "sub2", assignmentId: "assign1", userId: "user3", submissionDate: new Date("2025-09-16"), content: "print('Hello World')" },
-  { id: "sub3", assignmentId: "assign2", userId: "user1", submissionDate: new Date("2025-10-08"), content: "for i in range(5): print(i)" },
-  { id: "sub4", assignmentId: "assign4", userId: "user4", submissionDate: new Date("2025-10-18"), content: "<h1>My Webpage</h1>" },
-];
-
-const grades = [
-  { id: "grade1", submissionId: "sub1", graderId: "user2", feedback: "Well done!", gradedDate: new Date("2025-09-20") },
-  { id: "grade2", submissionId: "sub2", graderId: "user2", feedback: "Good effort, minor issues", gradedDate: new Date("2025-09-21") },
-  { id: "grade3", submissionId: "sub4", graderId: "user2", feedback: "Nice layout!", gradedDate: new Date("2025-10-19") },
-];
-
-const announcements = [
-  { id: "ann1", courseId: "course1", authorId: "user2", title: "Welcome!", content: "Excited to start the course.", postedDate: new Date("2025-09-01") },
-  { id: "ann2", courseId: "course3", authorId: "user2", title: "Project Reminder", content: "Webpage project due soon.", postedDate: new Date("2025-10-10") },
-];
+const prisma = new PrismaClient();
 
 async function main() {
-  await Promise.all(users.map(u => prisma.user.upsert({ where: { email: u.email }, update: u, create: u })));
-  await Promise.all(courses.map(c => prisma.course.upsert({ where: { id: c.id }, update: c, create: c })));
-  await Promise.all(modules.map(m => prisma.module.upsert({ where: { id: m.id }, update: m, create: m })));
-  await Promise.all(enrollments.map(e => prisma.enrollment.upsert({ where: { id: e.id }, update: e, create: e })));
-  await Promise.all(assignments.map(a => prisma.assignment.upsert({ where: { id: a.id }, update: a, create: a })));
-  await Promise.all(submissions.map(s => prisma.submission.upsert({ where: { id: s.id }, update: s, create: s })));
-  await Promise.all(grades.map(g => prisma.grade.upsert({ where: { id: g.id }, update: g, create: g })));
-  await Promise.all(announcements.map(a => prisma.announcement.upsert({ where: { id: a.id }, update: a, create: a })));
+  console.log("Seeding database...");
 
-  console.log("database seeded with more realistic data!");
+  const users = [
+    { email: "twilson@udel.edu", firstName: "Tyler", lastName: "Wilson", role: "USER", passwordHash: "password" },
+    { email: "jchristof@udel.edu", firstName: "Josh", lastName: "Christof", role: "USER", passwordHash: "password" },
+    { email: "jmarlow@udel.edu", firstName: "Josh", lastName: "Marlow", role: "USER", passwordHash: "password" },
+    { email: "kmalice@udel.edu", firstName: "Kyle", lastName: "Malice", role: "USER", passwordHash: "password" },
+    { email: "pclark@udel.edu", firstName: "Prince", lastName: "Clark", role: "ADMIN", passwordHash: "password" },
+  ];
+
+  const createdUsers = [];
+  for (const user of users) {
+    const u = await prisma.user.create({ data: user });
+    createdUsers.push(u);
+  }
+
+  const courses = [
+    { title: "Intro to Programming", description: "Learn basic programming concepts." },
+    { title: "Web Development", description: "HTML, CSS, JavaScript, and more." },
+  ];
+
+  const createdCourses = [];
+  for (const course of courses) {
+    const c = await prisma.course.create({ data: course });
+    createdCourses.push(c);
+  }
+
+  const modules = [
+    { courseId: createdCourses[0].id, title: "Variables and Types", content: "Introduction to variables, types, and expressions." },
+    { courseId: createdCourses[0].id, title: "Control Flow", content: "If statements, loops, and logical expressions." },
+    { courseId: createdCourses[1].id, title: "HTML Basics", content: "Elements, tags, and document structure." },
+    { courseId: createdCourses[1].id, title: "CSS Styling", content: "Selectors, properties, and layouts." },
+  ];
+
+  for (const module of modules) {
+    await prisma.module.create({ data: module });
+  }
+
+  const enrollments = [
+    { courseId: createdCourses[0].id, userId: createdUsers[0].id, term: "Fall 2025", role: "INSTRUCTOR" },
+    { courseId: createdCourses[0].id, userId: createdUsers[2].id, term: "Fall 2025", role: "STUDENT" },
+    { courseId: createdCourses[0].id, userId: createdUsers[3].id, term: "Fall 2025", role: "STUDENT" },
+    { courseId: createdCourses[1].id, userId: createdUsers[1].id, term: "Fall 2025", role: "INSTRUCTOR" },
+    { courseId: createdCourses[1].id, userId: createdUsers[2].id, term: "Fall 2025", role: "STUDENT" },
+    { courseId: createdCourses[1].id, userId: createdUsers[4].id, term: "Fall 2025", role: "STUDENT" },
+  ];
+
+  for (const enrollment of enrollments) {
+    await prisma.enrollment.create({ data: enrollment });
+  }
+
+  const assignments = [
+    { courseId: createdCourses[0].id, title: "Variables Assignment", description: "Solve problems using variables.", dueDate: new Date("2025-10-01") },
+    { courseId: createdCourses[0].id, title: "Loops Assignment", description: "Practice loops and conditionals.", dueDate: new Date("2025-10-15") },
+    { courseId: createdCourses[1].id, title: "HTML Project", description: "Build a basic web page.", dueDate: new Date("2025-10-10") },
+  ];
+
+  const createdAssignments = [];
+  for (const assignment of assignments) {
+    const a = await prisma.assignment.create({ data: assignment });
+    createdAssignments.push(a);
+  }
+
+  const submissions = [
+    { assignmentId: createdAssignments[0].id, userId: createdUsers[2].id, submissionDate: new Date("2025-09-30"), content: "let x = 5; console.log(x);" },
+    { assignmentId: createdAssignments[0].id, userId: createdUsers[3].id, submissionDate: new Date("2025-09-30"), content: "var y = 10; console.log(y);" },
+    { assignmentId: createdAssignments[2].id, userId: createdUsers[2].id, submissionDate: new Date("2025-10-09"), content: "<!DOCTYPE html><html><body>Hello World</body></html>" },
+  ];
+
+  const createdSubmissions = [];
+  for (const submission of submissions) {
+    const s = await prisma.submission.create({ data: submission });
+    createdSubmissions.push(s);
+  }
+
+  const grades = [
+    { submissionId: createdSubmissions[0].id, graderId: createdUsers[0].id, feedback: "Good job!", gradedDate: new Date("2025-10-01") },
+    { submissionId: createdSubmissions[1].id, graderId: createdUsers[0].id, feedback: "Correct solution.", gradedDate: new Date("2025-10-01") },
+    { submissionId: createdSubmissions[2].id, graderId: createdUsers[1].id, feedback: "Well done on HTML.", gradedDate: new Date("2025-10-10") },
+  ];
+
+  for (const grade of grades) {
+    await prisma.grade.create({ data: grade });
+  }
+
+  const announcements = [
+    { courseId: createdCourses[0].id, authorId: createdUsers[0].id, title: "Welcome!", content: "Welcome to Intro to Programming.", postedDate: new Date("2025-09-01") },
+    { courseId: createdCourses[1].id, authorId: createdUsers[1].id, title: "Project Reminder", content: "Submit your HTML project on time.", postedDate: new Date("2025-09-05") },
+  ];
+
+  for (const announcement of announcements) {
+    await prisma.announcement.create({ data: announcement });
+  }
+
+  console.log("Seeding complete!");
 }
 
 main()
-  .catch(e => { console.error(e); process.exit(1); })
-  .finally(async () => { await prisma.$disconnect(); });
-
+  .catch((e) => console.error(e))
+  .finally(async () => await prisma.$disconnect());

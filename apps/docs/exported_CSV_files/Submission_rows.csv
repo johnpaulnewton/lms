@@ -1,0 +1,4 @@
+id,assignmentId,userId,submissionDate,content
+cmft1fche000y18o286mehui4,cmft1fce7000s18o2srzaww7g,cmft1fbzc000218o2s34ulw4m,2025-09-30 00:00:00,let x = 5; console.log(x);
+cmft1fcjc001018o23ik4b2db,cmft1fce7000s18o2srzaww7g,cmft1fc03000318o2uzolltjq,2025-09-30 00:00:00,var y = 10; console.log(y);
+cmft1fck2001218o266k4wa01,cmft1fcgi000w18o2s7sr5dfq,cmft1fbzc000218o2s34ulw4m,2025-10-09 00:00:00,<!DOCTYPE html><html><body>Hello World</body></html>

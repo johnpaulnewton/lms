@@ -1,0 +1,6 @@
+id,email,firstName,lastName,role,passwordHash
+cmft1fbwp000018o242n785mr,twilson@udel.edu,Tyler,Wilson,USER,password
+cmft1fbyn000118o2m1wi1a6e,jchristof@udel.edu,Josh,Christof,USER,password
+cmft1fbzc000218o2s34ulw4m,jmarlow@udel.edu,Josh,Marlow,USER,password
+cmft1fc03000318o2uzolltjq,kmalice@udel.edu,Kyle,Malice,USER,password
+cmft1fc0s000418o29cj2dl2k,pclark@udel.edu,Prince,Clark,ADMIN,password
