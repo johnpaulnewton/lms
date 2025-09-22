@@ -21,7 +21,7 @@ model User {
   passwordHash  String
   enrollments   Enrollment[]
   submissions   Submission[]
-  gradesGiven   Grade[]       @relation("GradesGiven")
+  grades   Grade[]       @relation("Grader")
   announcements Announcement[]
 }
 
@@ -79,7 +79,7 @@ model Grade {
   submissionId    String      @unique
   submission      Submission  @relation("SubmissionGrade", fields: [submissionId], references: [id])
   graderId        String
-  grader          User        @relation("GradesGiven", fields: [graderId], references: [id])
+  grader          User        @relation("Grader", fields: [graderId], references: [id])
   feedback        String
   gradedDate      DateTime
 }
