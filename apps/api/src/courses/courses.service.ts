@@ -1,17 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { HttpException } from '@nestjs/common';
 
 @Injectable()
 export class CoursesService {
     constructor(private prisma: PrismaService) {}
 
-    getCourses() {}
+    getCourses() {
+        return this.prisma.course.findMany();
+    }
 
-    getCourseById(id: string) {}
+    getCourseById(id: string) {
+        return this.prisma.course.findUnique({ where: {id: id}});
+    }
 
-    createCourse(courseData: { title: string; description: string;}) {}
+    createCourse(courseData: { title: string; description: string;}) {
+        return this.prisma.course.create({ data: courseData });
+    }
 
-    updateCourseById(id: string, courseData: { title?: string; description?: string}) {}
+    async updateCourseById(id: string, courseData: { title?: string; description?: string}) {
+        const findCourse = await this.getCourseById(id);
+        if(!findCourse){
+            throw new HttpException('Course not Found', 404);
+        }
+        return this.prisma.course.update({where: {id : id}, data: courseData});
+    }
 
-    deleteCourseById(id: string) {}
+    async deleteCourseById(id: string) {
+        const findCourse = await this.getCourseById(id);
+        if(!findCourse){
+            throw new HttpException('Course not Found', 404);
+        }
+        return this.prisma.course.delete({where: {id : id}});
+    }
 }

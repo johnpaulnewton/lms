@@ -10,7 +10,7 @@ export class UsersService{
     }
     
     getUserById(id: string) {
-        return this.prisma.user.findUnique({ where: {id: id}})
+        return this.prisma.user.findUnique({ where: {id: id}});
     }
 
     createUser(userData: { email: string; firstName: string; lastName: string; role: 'STUDENT' | 'INSTRUCTOR' | 'ADMIN'; passwordHash: string }) {
