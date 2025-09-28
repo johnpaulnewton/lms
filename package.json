@@ -33,6 +33,7 @@
   "dependencies": {
     "@faker-js/faker": "^10.0.0",
     "@prisma/client": "latest",
+    "class-validator": "^0.14.2",
     "dotenv": "^17.2.2"
   },
   "packageManager": "npm@10.9.0",

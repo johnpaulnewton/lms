@@ -1,4 +1,4 @@
-import { PrismaClient } from "../generated/client";
+import { PrismaClient, Role } from "../generated/client";
 
 const prisma = new PrismaClient();
 
@@ -6,11 +6,11 @@ async function main() {
   console.log("Seeding database...");
 
   const users = [
-    { email: "twilson@udel.edu", firstName: "Tyler", lastName: "Wilson", role: "USER", passwordHash: "password" },
-    { email: "jchristof@udel.edu", firstName: "Josh", lastName: "Christof", role: "USER", passwordHash: "password" },
-    { email: "jmarlow@udel.edu", firstName: "Josh", lastName: "Marlow", role: "USER", passwordHash: "password" },
-    { email: "kmalice@udel.edu", firstName: "Kyle", lastName: "Malice", role: "USER", passwordHash: "password" },
-    { email: "pclark@udel.edu", firstName: "Prince", lastName: "Clark", role: "ADMIN", passwordHash: "password" },
+    { email: "twilson@udel.edu", firstName: "Tyler", lastName: "Wilson", role: 'STUDENT', passwordHash: "password" },
+    { email: "jchristof@udel.edu", firstName: "Josh", lastName: "Christof", role: 'STUDENT', passwordHash: "password" },
+    { email: "jmarlow@udel.edu", firstName: "Josh", lastName: "Marlow", role: 'STUDENT', passwordHash: "password" },
+    { email: "kmalice@udel.edu", firstName: "Kyle", lastName: "Malice", role: 'ADMIN', passwordHash: "password" },
+    { email: "pclark@udel.edu", firstName: "Prince", lastName: "Clark", role: 'INSTRUCTOR', passwordHash: "password" },
   ];
 
   const createdUsers = [];
@@ -42,12 +42,12 @@ async function main() {
   }
 
   const enrollments = [
-    { courseId: createdCourses[0].id, userId: createdUsers[0].id, term: "Fall 2025", role: "INSTRUCTOR" },
-    { courseId: createdCourses[0].id, userId: createdUsers[2].id, term: "Fall 2025", role: "STUDENT" },
-    { courseId: createdCourses[0].id, userId: createdUsers[3].id, term: "Fall 2025", role: "STUDENT" },
-    { courseId: createdCourses[1].id, userId: createdUsers[1].id, term: "Fall 2025", role: "INSTRUCTOR" },
-    { courseId: createdCourses[1].id, userId: createdUsers[2].id, term: "Fall 2025", role: "STUDENT" },
-    { courseId: createdCourses[1].id, userId: createdUsers[4].id, term: "Fall 2025", role: "STUDENT" },
+    { courseId: createdCourses[0].id, userId: createdUsers[0].id, term: "Fall 2025" },
+    { courseId: createdCourses[0].id, userId: createdUsers[2].id, term: "Fall 2025" },
+    { courseId: createdCourses[0].id, userId: createdUsers[3].id, term: "Fall 2025" },
+    { courseId: createdCourses[1].id, userId: createdUsers[1].id, term: "Fall 2025" },
+    { courseId: createdCourses[1].id, userId: createdUsers[2].id, term: "Fall 2025" },
+    { courseId: createdCourses[1].id, userId: createdUsers[4].id, term: "Fall 2025" },
   ];
 
   for (const enrollment of enrollments) {
@@ -67,9 +67,9 @@ async function main() {
   }
 
   const submissions = [
-    { assignmentId: createdAssignments[0].id, userId: createdUsers[2].id, submissionDate: new Date("2025-09-30"), content: "let x = 5; console.log(x);" },
-    { assignmentId: createdAssignments[0].id, userId: createdUsers[3].id, submissionDate: new Date("2025-09-30"), content: "var y = 10; console.log(y);" },
-    { assignmentId: createdAssignments[2].id, userId: createdUsers[2].id, submissionDate: new Date("2025-10-09"), content: "<!DOCTYPE html><html><body>Hello World</body></html>" },
+    { assignmentId: createdAssignments[0].id, studentId: createdUsers[2].id, submissionDate: new Date("2025-09-30"), content: "let x = 5; console.log(x);" },
+    { assignmentId: createdAssignments[0].id, studentId: createdUsers[3].id, submissionDate: new Date("2025-09-30"), content: "var y = 10; console.log(y);" },
+    { assignmentId: createdAssignments[2].id, studentId: createdUsers[2].id, submissionDate: new Date("2025-10-09"), content: "<!DOCTYPE html><html><body>Hello World</body></html>" },
   ];
 
   const createdSubmissions = [];
@@ -79,9 +79,9 @@ async function main() {
   }
 
   const grades = [
-    { submissionId: createdSubmissions[0].id, graderId: createdUsers[0].id, feedback: "Good job!", gradedDate: new Date("2025-10-01") },
-    { submissionId: createdSubmissions[1].id, graderId: createdUsers[0].id, feedback: "Correct solution.", gradedDate: new Date("2025-10-01") },
-    { submissionId: createdSubmissions[2].id, graderId: createdUsers[1].id, feedback: "Well done on HTML.", gradedDate: new Date("2025-10-10") },
+    { submissionId: createdSubmissions[0].id, graderId: createdUsers[4].id, gradeValue: 95, feedback: "Good job!", gradedDate: new Date("2025-10-01") },
+    { submissionId: createdSubmissions[1].id, graderId: createdUsers[4].id, gradeValue: 90, feedback: "Correct solution.", gradedDate: new Date("2025-10-01") },
+    { submissionId: createdSubmissions[2].id, graderId: createdUsers[3].id, gradeValue: 100, feedback: "Well done on HTML.", gradedDate: new Date("2025-10-10") },
   ];
 
   for (const grade of grades) {
@@ -89,8 +89,8 @@ async function main() {
   }
 
   const announcements = [
-    { courseId: createdCourses[0].id, authorId: createdUsers[0].id, title: "Welcome!", content: "Welcome to Intro to Programming.", postedDate: new Date("2025-09-01") },
-    { courseId: createdCourses[1].id, authorId: createdUsers[1].id, title: "Project Reminder", content: "Submit your HTML project on time.", postedDate: new Date("2025-09-05") },
+  { courseId: createdCourses[0].id, authorId: createdUsers[4].id, title: "Welcome!", content: "Welcome to Intro to Programming.", postedDate: new Date("2025-09-01") },
+  { courseId: createdCourses[1].id, authorId: createdUsers[4].id, title: "Project Reminder", content: "Submit your HTML project on time.", postedDate: new Date("2025-09-05") },
   ];
 
   for (const announcement of announcements) {

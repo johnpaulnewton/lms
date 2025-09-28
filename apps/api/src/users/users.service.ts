@@ -30,7 +30,7 @@ export class UsersService{
         if(!findUser){
             throw new HttpException('User not Found', 404);
         }
-        return this.prisma.user.delete({where: {id : id}});
+        return this.prisma.user.delete({where: {id : id}})
     }
 } 
  

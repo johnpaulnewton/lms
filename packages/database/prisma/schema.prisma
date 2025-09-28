@@ -17,11 +17,12 @@ model User {
   email         String        @unique
   firstName     String
   lastName      String
-  role          UserRole
+  //role          Role
+  role          String
   passwordHash  String
   enrollments   Enrollment[]
   submissions   Submission[]
-  grades   Grade[]       @relation("Grader")
+  grades        Grade[]       @relation("Grader")
   announcements Announcement[]
 }
 
@@ -50,7 +51,6 @@ model Enrollment {
   userId        String
   user          User          @relation(fields: [userId], references: [id])
   term          String
-  role          EnrollmentRole
 }
 
 model Assignment {
@@ -60,15 +60,15 @@ model Assignment {
   title         String
   description   String
   dueDate       DateTime
-  submissions     Submission[]
+  submissions   Submission[]
 }
 
 model Submission {
   id              String      @id @default(cuid())
   assignmentId    String
   assignment      Assignment  @relation(fields: [assignmentId], references: [id])
-  userId          String
-  user            User        @relation(fields: [userId], references: [id])
+  studentId       String
+  student         User        @relation(fields: [studentId], references: [id])
   submissionDate  DateTime
   content         String
   grade           Grade?      @relation("SubmissionGrade")
@@ -80,6 +80,7 @@ model Grade {
   submission      Submission  @relation("SubmissionGrade", fields: [submissionId], references: [id])
   graderId        String
   grader          User        @relation("Grader", fields: [graderId], references: [id])
+  gradeValue      Float
   feedback        String
   gradedDate      DateTime
 }
@@ -95,11 +96,8 @@ model Announcement {
   postedDate    DateTime
 }
 
-enum UserRole {
-  USER 
-  ADMIN
-}
-enum EnrollmentRole {
-  STUDENT
-  INSTRUCTOR
-}
+// enum Role {
+//   STUDENT
+//   INSTRUCTOR 
+//   ADMIN
+// }
