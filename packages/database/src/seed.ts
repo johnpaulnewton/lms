@@ -7,11 +7,11 @@ async function main() {
 
   // Users
   const usersData = [
-    { email: "twilson@udel.edu", firstName: "Tyler", lastName: "Wilson", role: Role.STUDENT, passwordHash: "password" },
-    { email: "jchristof@udel.edu", firstName: "Josh", lastName: "Christof", role: Role.STUDENT, passwordHash: "password" },
-    { email: "jmarlow@udel.edu", firstName: "Josh", lastName: "Marlow", role: Role.STUDENT, passwordHash: "password" },
-    { email: "kmalice@udel.edu", firstName: "Kyle", lastName: "Malice", role: Role.ADMIN, passwordHash: "password" },
-    { email: "pclark@udel.edu", firstName: "Prince", lastName: "Clark", role: Role.INSTRUCTOR, passwordHash: "password" },
+    { email: "twilson@udel.edu", firstName: "Tyler", lastName: "Wilson", role: "STUDENT", passwordHash: "password" },
+    { email: "jchristof@udel.edu", firstName: "Josh", lastName: "Christof", role: "STUDENT", passwordHash: "password" },
+    { email: "jmarlow@udel.edu", firstName: "Josh", lastName: "Marlow", role: "STUDENT", passwordHash: "password" },
+    { email: "kmalice@udel.edu", firstName: "Kyle", lastName: "Malice", role: "ADMIN", passwordHash: "password" },
+    { email: "pclark@udel.edu", firstName: "Prince", lastName: "Clark", role: "INSTRUCTOR", passwordHash: "password" },
   ];
 
   const createdUsers = [];
