@@ -3,9 +3,13 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = process.env.PORT || 3000;
-  const host = process.env.HOST || undefined;
-  await app.listen(port, host);
-}
 
-void bootstrap();
+  app.enableCors({
+    origin: ['http://localhost:3001', 'https://f25-cisc474-individual-2zzz.onrender.com'],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  });
+
+  const port = process.env.PORT;
+  await app.listen(port);
+}
+bootstrap();
