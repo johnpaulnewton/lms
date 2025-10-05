@@ -3,7 +3,7 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import tailwindcss from '@tailwindcss/vite';
-import netlify from '@netlify/vite-plugin-tanstack-start';
+import { cloudflare } from '@cloudflare/vite-plugin';
 
 const config = defineConfig({
   plugins: [
@@ -12,9 +12,9 @@ const config = defineConfig({
       projects: ['./tsconfig.json'],
     }),
     tailwindcss(),
+    cloudflare({ viteEnvironment: { name: 'ssr' } }),
     tanstackStart(),
     // this must go last to ensure that SSR functions are found
-    netlify(),
     viteReact(),
   ],
 });
