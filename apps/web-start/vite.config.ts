@@ -13,9 +13,9 @@ const config = defineConfig({
     }),
     tailwindcss(),
     tanstackStart(),
-    viteReact(),
     // this must go last to ensure that SSR functions are found
     netlify(),
+    viteReact(),
   ],
 });
 
