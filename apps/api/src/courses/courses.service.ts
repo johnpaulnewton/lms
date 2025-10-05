@@ -11,7 +11,7 @@ export class CoursesService {
     }
 
     getCourseById(id: string) {
-        return this.prisma.course.findUnique({ where: {id: id}});
+        return this.prisma.course.findUnique({ where: {id: id}, include: { announcements: true, modules: true, assignments: true }});
     }
 
     createCourse(courseData: { title: string; description: string;}) {
@@ -33,4 +33,5 @@ export class CoursesService {
         }
         return this.prisma.course.delete({where: {id : id}});
     }
+
 }

@@ -1,28 +1,39 @@
+// app/courses/[id]/page.tsx
+import { Suspense, use } from "react";
 import { notFound } from "next/navigation";
+import Announcements from "./Announcements";
+import Modules from "./Modules";
+import Assignments from "./Assignments";
 
-interface PageProps {
-  params: Promise<{ id: string }>;
+async function getCourse(id: string) {
+  const res = await fetch(`https://f25-cisc474-individual-2zzz.onrender.com/courses/${id}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) notFound();
+  return res.json();
 }
 
-export default async function CoursePage({ params }: PageProps) {
-  const { id } = await params; // ✅ must await params (Next.js passes it as a Promise)
-
-  const res = await fetch(
-    `https://f25-cisc474-individual-2zzz.onrender.com/courses/${id}`,
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) {
-    notFound();
-  }
-
-  const course = await res.json();
+export default function CoursePage({ params }: { params: { id: string } }) {
+  const coursePromise = getCourse(params.id);
+  const course = use(coursePromise);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>{course.title}</h1>
-      <p>{course.description}</p>
-      <p><strong>Term:</strong> {course.term}</p>
+    <div style={{ maxWidth: "800px", margin: "2rem auto", fontFamily: "sans-serif" }}>
+      <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>{course.title}</h1>
+      <p style={{ color: "#555", marginBottom: "1.5rem" }}>{course.description}</p>
+
+      <Suspense fallback={<p>Loading announcements...</p>}>
+        <Announcements courseId={course.id} />
+      </Suspense>
+
+      <Suspense fallback={<p>Loading modules...</p>}>
+        <Modules courseId={course.id} />
+      </Suspense>
+
+      <Suspense fallback={<p>Loading assignments...</p>}>
+        <Assignments courseId={course.id} />
+      </Suspense>
     </div>
   );
 }

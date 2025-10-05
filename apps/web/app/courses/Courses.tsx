@@ -1,6 +1,6 @@
 "use client";
 import { use } from "react";
-import "./CoursesList.css";
+import "./Courses.css";
 
 export default function CoursesList({
   enrollments,
