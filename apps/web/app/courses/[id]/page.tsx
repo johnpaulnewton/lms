@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 
-interface CoursePageProps {
-  params: { id: string };
+interface PageProps {
+  params: Promise<{ id: string }>;
 }
 
-export default async function CoursePage({ params }: CoursePageProps) {
-  const { id } = params;
+export default async function CoursePage({ params }: PageProps) {
+  const { id } = await params; // ✅ must await params (Next.js passes it as a Promise)
 
   const res = await fetch(
     `https://f25-cisc474-individual-2zzz.onrender.com/courses/${id}`,
