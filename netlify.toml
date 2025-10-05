@@ -2,6 +2,3 @@
   base = "apps/web-start"
   command = "vite build"
   publish = "dist/client"
-[dev]
-  command = "vite dev"
-  port = 3000
