@@ -8,4 +8,9 @@ export class UsersController {
   findAll() {
     return this.usersService.findAll();
   }
+
+  @Get(':id')
+  findOne(id: string) {
+    return this.usersService.findOne(id);
+  }
 }
