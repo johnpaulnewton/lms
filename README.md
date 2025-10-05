@@ -73,6 +73,9 @@ Then, you can make the first push of your initial database setup: `npx prisma db
 
 Then you can populate the database with an initial row by using: `npx prisma db seed`
 
+- Run studio: `npx prisma studio`
+- Validate prisma: `npx prisma validate`
+
 ---
 
 ## What's inside?
