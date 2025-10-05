@@ -17,6 +17,18 @@ const config = defineConfig({
     // this must go last to ensure that SSR functions are found
     viteReact(),
   ],
+  build: {
+    // this section applies to both client and server; if you split builds, put it on the server build
+    rollupOptions: {
+      output: {
+        // put the worker entry at a stable path
+        entryFileNames: (chunk) =>
+          chunk.name.includes('worker-entry')
+            ? 'worker.js'
+            : 'assets/[name]-[hash].js',
+      },
+    },
+  },
 });
 
 export default config;
