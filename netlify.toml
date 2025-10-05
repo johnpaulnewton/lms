@@ -2,6 +2,10 @@
   base = "apps/web-start"
   command = "vite build"
   publish = "dist/client"
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
 [dev]
   command = "vite dev"
   port = 3000
