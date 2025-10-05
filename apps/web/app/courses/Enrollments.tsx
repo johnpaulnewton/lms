@@ -1,8 +1,8 @@
 "use client";
 import { use } from "react";
-import "./Courses.css";
+import "./Enrollments.module.css";
 
-export default function CoursesList({
+export default function Enrollments({
   enrollments,
 }: {
   enrollments: Promise<{ term: string; course: { id: number; title: string;} }[]>;
