@@ -8,7 +8,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "preview": "vite preview",
-    "deploy": "wrangler deploy --config apps/web-start/wrangler.jsonc",
+    "deploy": "pwd && ls && wrangler deploy --config apps/web-start/dist/server/wrangler.json",
     "cf-typegen": "wrangler types",
     "test": "vitest run",
     "lint": "eslint",
