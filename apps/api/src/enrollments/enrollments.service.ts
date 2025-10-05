@@ -31,5 +31,9 @@ export class EnrollmentsService {
             throw new Error('Enrollment not Found');
         }
         return this.prisma.enrollment.delete({where: {id : id}});
-    }   
+    }
+
+    async getEnrollmentsByUserId(userId: string) {
+        return this.prisma.enrollment.findMany({ where: { userId: userId }, include: { course: true } });
+    }
 }

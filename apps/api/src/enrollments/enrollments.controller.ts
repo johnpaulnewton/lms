@@ -33,4 +33,8 @@ export class EnrollmentsController {
         return this.enrollmentsService.deleteEnrollmentById(id);
     }
 
+    @Get('user/:userId')
+    getEnrollmentsByUserId(@Param('userId') userId: string) {
+        return this.enrollmentsService.getEnrollmentsByUserId(userId);
+    }
 }
