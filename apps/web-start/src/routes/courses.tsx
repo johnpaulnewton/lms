@@ -7,11 +7,17 @@ export const Route = createFileRoute('/courses')({
 });
 
 function RouteComponent() {
-  const { data, refetch } = useQuery({
+  const { data, refetch, error, isFetching } = useQuery({
     queryKey: ['courses'],
     queryFn: backendFetcher('/courses'),
     initialData: [],
   });
+
+  if (isFetching) return <div>Loading...</div>;
+
+  if (error) {
+    return <div>Error: {(error as Error).message}</div>;
+  }
 
   return <div>Courses: {JSON.stringify(data)}</div>;
 }
