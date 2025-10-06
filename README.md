@@ -132,6 +132,9 @@ get merge upstream/main
 VITE_BACKEND_URL="http://localhost:3000"
 ```
 
+7. Now you will need to port over your frontend, or at least as much of it as you want. For more information about TanStack Start's routing, see: <https://tanstack.com/start/latest/docs/framework/react/routing>
+8. You can use the `backendFetcher` function in `./integrations/fetcher.ts` to fetch data from the backend. It uses the `VITE_BACKEND_URL` environment variable to determine where to send requests. For more information about Tanstack/React Query, see: <https://tanstack.com/query/latest/docs/framework/react/guides/queries>
+
 ### Deploying
 
 Once you are ready to deploy, you can use Cloudflare Workers for the frontend. The backend can still be deployed on Render.
