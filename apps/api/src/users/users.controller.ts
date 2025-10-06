@@ -13,4 +13,9 @@ export class UsersController {
   findOne(id: string) {
     return this.usersService.findOne(id);
   }
+
+  @Get('by-email/:email')
+  findByEmail(email: string) {
+    return this.usersService.findByEmail(email);
+  }
 }

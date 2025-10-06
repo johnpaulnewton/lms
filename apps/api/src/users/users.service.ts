@@ -12,4 +12,8 @@ export class UsersService {
   findOne(id: string) {
     return this.prisma.user.findFirst({ where: { id } });
   }
+
+  findByEmail(email: string) {
+    return this.prisma.user.findFirst({ where: { email } });
+  }
 }
