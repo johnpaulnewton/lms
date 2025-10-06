@@ -13,9 +13,8 @@ async function getCourse(id: string) {
     return res.json();
 }
 
-export default function CoursePage({ params }: { params: { id: string } }) {
-  const coursePromise = getCourse(params.id);
-  const course = use(coursePromise);
+export default async function CoursePage({ params }: { params: { id: string } }) {
+    const course = await getCourse(params.id);
 
   return (
     <div style={{ maxWidth: "800px", margin: "2rem auto", fontFamily: "sans-serif" }}>
