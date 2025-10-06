@@ -1,27 +1,25 @@
-// app/courses/[id]/page.tsx
-import { Suspense, use } from "react";
-import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import Announcements from "./Announcements";
 import Modules from "./Modules";
 import Assignments from "./Assignments";
 
 async function getCourse(id: string) {
-  const res = await fetch(`https://f25-cisc474-individual-2zzz.onrender.com/courses/${id}`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) notFound();
+  const res = await fetch(`https://f25-cisc474-individual-2zzz.onrender.com/courses/${id}`);
+  if (!res.ok) throw new Error("Failed to fetch course");
   return res.json();
 }
 
-export default function CoursePage({ params }: { params: { id: string } }) {
-  const coursePromise = getCourse(params.id);
-  const course = use(coursePromise);
+export default async function CoursePage({ params }: { params: { id: string } }) {
+  const course = await getCourse(params.id);
 
   return (
     <div style={{ maxWidth: "800px", margin: "2rem auto", fontFamily: "sans-serif" }}>
-      <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>{course.title}</h1>
-      <p style={{ color: "#555", marginBottom: "1.5rem" }}>{course.description}</p>
+      <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
+        {course.title}
+      </h1>
+      <p style={{ color: "#555", marginBottom: "1.5rem" }}>
+        {course.description}
+      </p>
 
       <Suspense fallback={<p>Loading announcements...</p>}>
         <Announcements courseId={course.id} />

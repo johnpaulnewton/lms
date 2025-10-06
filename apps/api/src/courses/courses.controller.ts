@@ -13,7 +13,7 @@ export class CoursesController {
     }
 
     @Get(':id')
-    getCourseById(@Param('id') id: string) {
+    getCourseById(@Param('id') id: string ) {
         return this.coursesService.getCourseById(id);
     }
 

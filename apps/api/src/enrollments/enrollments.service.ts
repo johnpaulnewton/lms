@@ -34,6 +34,6 @@ export class EnrollmentsService {
     }
 
     async getEnrollmentsByUserId(userId: string) {
-        return this.prisma.enrollment.findMany({ where: { userId: userId }, include: { course: true } });
+        return this.prisma.enrollment.findMany({ where: { userId: userId }});
     }
 }

@@ -1,6 +1,6 @@
 "use client";
 import { use } from "react";
-import "./Enrollments.module.css";
+import styles from "./Enrollments.module.css";
 
 export default function Enrollments({
   enrollments,
@@ -10,23 +10,21 @@ export default function Enrollments({
   const data = use(enrollments);
 
   return (
-    <div className="enrollments-container">
-      <div className="enrollments-header">
+    <div className={styles.enrollmentsContainer}>
+      <div className={styles.enrollmentsHeader}>
         <span>Course</span>
         <span>Term</span>
       </div>
-      <ul className="enrollments-list">
-        {data.map((enrollment) => (
-          <li key={enrollment.course.id} className="enrollment-item">
-          <a href={`/courses/${enrollment.course.id}`} className="course-link">
-            {enrollment.course.title}
-          </a>
-          <span className="term">{enrollment.term}</span>
-        </li>
-        
+      <ul className={styles.enrollmentsList}>
+        {data.map((e) => (
+          <li key={e.course.id} className={styles.enrollmentItem}>
+            <a href={`/courses/${e.course.id}`} className={styles.courseLink}>
+              {e.course.title}
+            </a>
+            <span>{e.term}</span>
+          </li>
         ))}
       </ul>
     </div>
-
   );
 }

@@ -10,8 +10,9 @@ export class CoursesService {
         return this.prisma.course.findMany();
     }
 
-    getCourseById(id: string) {
-        return this.prisma.course.findUnique({ where: {id: id}, include: { announcements: true, modules: true, assignments: true }});
+    async getCourseById(id: string) {
+        const course = await this.prisma.course.findUnique({ where: {id: id}, include: { announcements: true, modules: true, assignments: true }});
+        return course;
     }
 
     createCourse(courseData: { title: string; description: string;}) {
