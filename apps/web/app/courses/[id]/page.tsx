@@ -12,9 +12,13 @@ async function getCourse(id: string) {
     return res.json();
 }
 
-export default function CoursePage({ params }: { params: { id: string } }) {
-  
-  const course = getCourse(params.id);
+export default async function CoursePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const course = getCourse(id);
 
   return (
     <Suspense fallback={<p>Loading course...</p>}>
