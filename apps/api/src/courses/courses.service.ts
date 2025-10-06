@@ -6,7 +6,7 @@ import { PrismaService } from '../prisma.service';
 export class CoursesService {
   constructor(private prisma: PrismaService) {}
   create(createCourseDto: CourseCreateIn) {
-    return 'This action adds a new course';
+    return this.prisma.course.create({ data: createCourseDto });
   }
 
   findAll() {
