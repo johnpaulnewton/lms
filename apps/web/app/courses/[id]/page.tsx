@@ -1,7 +1,5 @@
 import { Suspense } from "react";
-// import Announcements from "./Announcements";
-// import Modules from "./Modules";
-// import Assignments from "./Assignments";
+import Course from "./Course";
 export const dynamic = "force-dynamic";
 
 async function getCourse(id: string) {
@@ -14,30 +12,14 @@ async function getCourse(id: string) {
     return res.json();
 }
 
-export default async function CoursePage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-const { id } = await params;
-const course = await getCourse(id);
+export default function CoursePage({ params }: { params: { id: string } }) {
+  
+  const course = getCourse(params.id);
 
   return (
-    <div style={{ maxWidth: "800px", margin: "2rem auto", fontFamily: "sans-serif" }}>
-    <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>{course.title}</h1>
-    <p style={{ color: "#555", marginBottom: "1.5rem" }}>{course.description}</p>
-
-      {/* <Suspense fallback={<p>Loading announcements...</p>}>
-        <Announcements courseId={course.id} />
-      </Suspense>
-
-      <Suspense fallback={<p>Loading modules...</p>}>
-        <Modules courseId={course.id} />
-      </Suspense>
-
-      <Suspense fallback={<p>Loading assignments...</p>}>
-        <Assignments courseId={course.id} />
-      </Suspense> */}
-    </div>
+    <Suspense fallback={<p>Loading course...</p>}>
+      <Course course={course} />
+    </Suspense>
   );
 }
+

@@ -1,4 +1,10 @@
-/* .announcementsContainer {
+.courseContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.announcementsContainer {
     margin-bottom: 2rem;
     font-family: sans-serif;
   }
@@ -36,4 +42,4 @@
   .noAnnouncements {
     color: #777;
   }
-   */
+  
