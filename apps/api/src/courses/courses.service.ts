@@ -1,25 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CourseCreateIn, CourseUpdateIn } from '@repo/api/courses';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class CoursesService {
+  constructor(private prisma: PrismaService) {}
   create(createCourseDto: CourseCreateIn) {
     return 'This action adds a new course';
   }
 
   findAll() {
-    return `This action returns all courses`;
+    return this.prisma.course.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} course`;
+  findOne(id: string) {
+    return this.prisma.course.findUnique({
+      where: { id },
+    });
   }
 
-  update(id: number, updateCourseDto: CourseUpdateIn) {
-    return `This action updates a #${id} course`;
+  update(id: string, updateCourseDto: CourseUpdateIn) {
+    return this.prisma.course.update({
+      where: { id },
+      data: updateCourseDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} course`;
+  remove(id: string) {
+    return this.prisma.course.delete({
+      where: { id },
+    });
   }
 }
