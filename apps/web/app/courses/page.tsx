@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Enrollments from "./Enrollments";
 import styles from "./page.module.css";
+export const dynamic = "force-dynamic";
 
 async function getEnrollments() {
     const CURRENT_USER_ID = "cmgecorz0000018c7lw0sxk90"; //placeholder for now

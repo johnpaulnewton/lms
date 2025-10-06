@@ -2,6 +2,7 @@ import { Suspense } from "react";
 // import Announcements from "./Announcements";
 // import Modules from "./Modules";
 // import Assignments from "./Assignments";
+export const dynamic = "force-dynamic";
 
 async function getCourse(id: string) {
   const res = await fetch(`https://f25-cisc474-individual-2zzz.onrender.com/courses/${id}`);
