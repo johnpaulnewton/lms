@@ -1,3 +1,5 @@
+import styles from "./layout.module.css";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -5,29 +7,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{ margin: 0 }}>
-        <div style={{ display: "flex", height: "100vh" }}>
-          <aside
-            style={{
-              width: "150px",
-              background: "#eee",
-              padding: "1rem",
-            }}
-          >
-            <nav>
-              <a href="/profile">Profile</a><br />
-              <a href="/dashboard">Dashboard</a><br />
-              <a href="/courses">Courses</a><br />
-              <a href="/assignments">Assignments</a><br />
-              <a href="/grades-feedback">Grades & Feedback</a>
-            </nav>
-          </aside>
-          
-          <main style={{ flex: 1, padding: "1rem" }}>
-            {children}
-          </main>
-        </div>
-      </body>
-    </html>
+  <body className={styles.layoutContainer}>
+    <aside className={styles.sidebar}>
+      <nav>
+        <h2>Menu</h2>
+        <a href="/profile" className={styles.navLink}>👤 Profile</a>
+        <a href="/dashboard" className={styles.navLink}>📊 Dashboard</a>
+        <a href="/courses" className={styles.navLink}>📘 Courses</a>
+        <a href="/assignments" className={styles.navLink}>📝 Assignments</a>
+        <a href="/grades-feedback" className={styles.navLink}>📈 Grades & Feedback</a>
+      </nav>
+    </aside>
+
+    <main className={styles.mainContent}>{children}</main>
+  </body>
+</html>
   )
 }

@@ -1,0 +1,52 @@
+.layoutContainer {
+    display: flex;
+    height: 100vh;
+    font-family: sans-serif;
+    background-color: #fafafa;
+    color: #333;
+  }
+  
+  .sidebar {
+    width: 220px;
+    background-color: #f3f3f3;
+    border-right: 1px solid #ddd;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+  
+  .navLink {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+  
+  .navLink:hover {
+    background-color: #e5e5e5;
+  }
+  
+  .footer {
+    font-size: 0.8rem;
+    color: #777;
+    text-align: center;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 2rem 3rem;
+    overflow-y: auto;
+  }
+  
