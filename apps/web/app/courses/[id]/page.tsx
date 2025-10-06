@@ -14,7 +14,7 @@ export default async function CoursePage({
   }: {
     params: { id: string };
   }) {
-    const course = await getCourse(params.id);
+    const course: { id: string; title: string; description: string } = await getCourse(params.id);
   
 
   return (
