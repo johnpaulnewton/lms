@@ -60,7 +60,6 @@ export default function Course({
             {data.assignments.map(as => (
               <li key={as.id} className={styles.item}>
                 <strong>{as.title}</strong>
-                <p className={styles.itemContent}>{as.description}</p>
                 <p className={styles.meta}>Due {new Date(as.dueDate).toLocaleDateString()}</p>
               </li>
             ))}
