@@ -1,7 +1,4 @@
 import { Module } from '@nestjs/common';
-
-import { LinksModule } from './links/links.module';
-
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { UsersModule } from './users/users.module';
@@ -24,7 +21,7 @@ import { AnnouncementsService } from './announcements/announcements.service';
 import { AnnouncementsModule } from './announcements/announcements.module';
 
 @Module({
-  imports: [LinksModule, UsersModule, PrismaModule, CoursesModule, ModulesModule, EnrollmentsModule, AssignmentsModule, SubmissionsModule, GradesModule, AnnouncementsModule],
+  imports: [/*LinksModule,*/UsersModule, PrismaModule, CoursesModule, ModulesModule, EnrollmentsModule, AssignmentsModule, SubmissionsModule, GradesModule, AnnouncementsModule],
   controllers: [AppController, CoursesController, ModulesController, EnrollmentsController, SubmissionsController],
   providers: [AppService, CoursesService, ModulesService, EnrollmentsService, SubmissionsService, AnnouncementsService],
 })

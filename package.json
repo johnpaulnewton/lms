@@ -33,13 +33,15 @@
   "dependencies": {
     "@faker-js/faker": "^10.0.0",
     "@prisma/client": "latest",
+    "@tamagui/core": "^1.135.2",
+    "@tamagui/stacks": "^1.135.2",
+    "@tamagui/text": "^1.135.2",
     "class-validator": "^0.14.2",
     "dotenv": "^17.2.2"
   },
   "packageManager": "npm@10.9.0",
   "workspaces": [
     "apps/*",
-    "packages/*",
-    "database"
+    "packages/*"
   ]
 }

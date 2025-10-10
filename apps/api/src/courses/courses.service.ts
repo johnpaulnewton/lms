@@ -37,5 +37,4 @@ export class CoursesService {
         }
         return this.prisma.course.delete({where: {id : id}});
     }
-
 }

@@ -1,0 +1,33 @@
+.sidebar {
+    width: 220px;
+    padding: 2rem 1.5rem;
+    background-color: #f4f6f8;
+    border-right: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #000;
+  }
+  
+  .navLink {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 0.25rem;
+  }
+  
+  .footer {
+    margin-top: auto;
+    font-size: 0.8rem;
+    color: #777;
+    text-align: center;
+  }

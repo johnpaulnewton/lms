@@ -1,0 +1,50 @@
+.enrollmentsContainer {
+  width: 100%;
+  max-width: 1300px;
+  margin: 2rem auto;
+  font-family: sans-serif;
+  color: #000;
+}
+
+.pageTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #000;
+}
+
+.enrollmentsHeader,
+.enrollmentItem {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.enrollmentsHeader {
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+}
+
+.enrollmentsList {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.enrollmentItem {
+  cursor: pointer;
+}
+
+.courseLink {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.courseLink:hover {
+  text-decoration: underline;
+}
+
+.courseLink:visited {
+  color: #1a73e8;
+}
