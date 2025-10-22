@@ -1,8 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { EnrollmentsService } from './enrollments.service';
 import { Get, Post, Patch, Delete, Param, Body } from '@nestjs/common';
-import { CreateEnrollmentDto } from './create-enrollment.dto';
-import { UpdateEnrollmentDto } from './update-enrollment.dto';
+import { EnrollmentCreateIn, EnrollmentUpdateIn } from '@repo/api/enrollments';
 
 @Controller('enrollments')
 export class EnrollmentsController {
@@ -19,12 +18,12 @@ export class EnrollmentsController {
     }
 
     @Post()
-    createEnrollment(@Body() createEnrollmentDto: CreateEnrollmentDto) {
+    createEnrollment(@Body() createEnrollmentDto: EnrollmentCreateIn) {
         return this.enrollmentsService.createEnrollment(createEnrollmentDto);
     }
 
     @Patch(':id')
-    updateEnrollmentById(@Param('id') id: string, @Body() updateEnrollmentDto: UpdateEnrollmentDto) {
+    updateEnrollmentById(@Param('id') id: string, @Body() updateEnrollmentDto: EnrollmentUpdateIn) {
         return this.enrollmentsService.updateEnrollmentById(id, updateEnrollmentDto);
     }
 

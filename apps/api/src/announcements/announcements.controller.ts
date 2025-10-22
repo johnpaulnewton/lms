@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Patch, Delete, Param, Body} from '@nestjs/common';
 import { AnnouncementsService } from './announcements.service';
-import { CreateAnnouncementDto } from './create-announcement.dto';
-import { UpdateAnnouncementDto } from './update-announcement.dto';
+import { AnnouncementCreateIn, AnnouncementUpdateIn } from '@repo/api/announcements';
 
 @Controller('announcements')
 export class AnnouncementsController {
@@ -18,12 +17,12 @@ export class AnnouncementsController {
     }
 
     @Post()
-    createAnnouncement(@Body() createAnnouncementDto: CreateAnnouncementDto) {
+    createAnnouncement(@Body() createAnnouncementDto: AnnouncementCreateIn) {
         return this.announcementsService.createAnnouncement(createAnnouncementDto);
     }
 
     @Patch(':id')
-    updateAnnouncementById(@Param('id') id: string, @Body() updateAnnouncementDto: UpdateAnnouncementDto) {
+    updateAnnouncementById(@Param('id') id: string, @Body() updateAnnouncementDto: AnnouncementUpdateIn) {
         return this.announcementsService.updateAnnouncementById(id, updateAnnouncementDto);
     }
 

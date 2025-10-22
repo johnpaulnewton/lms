@@ -1,5 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { AnnouncementCreateIn, AnnouncementUpdateIn } from '@repo/api/announcements';
 
 @Injectable()
 export class AnnouncementsService {
@@ -13,11 +14,11 @@ export class AnnouncementsService {
         return this.prisma.announcement.findUnique({ where: { id } });
     }
 
-    createAnnouncement(data: { title: string, content: string, postedDate: Date, courseId: string, authorId: string }) {
+    createAnnouncement(data: AnnouncementCreateIn) {
         return this.prisma.announcement.create({ data });
     }
 
-    async updateAnnouncementById(id: string, data: { title?: string, content?: string, postedDate?: Date, courseId?: string, authorId?: string }) {
+    async updateAnnouncementById(id: string, data: AnnouncementUpdateIn) {
         const findAnnouncement = await this.getAnnouncementById(id);
         if (!findAnnouncement) {
             throw new HttpException('Announcement not Found', 404);

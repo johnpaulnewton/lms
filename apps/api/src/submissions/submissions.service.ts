@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { SubmissionCreateIn, SubmissionUpdateIn} from '@repo/api/submissions';
 
 @Injectable()
 export class SubmissionsService {
@@ -14,11 +15,11 @@ export class SubmissionsService {
         return this.prisma.submission.findUnique({ where: {id: id}});
     }
     
-    createSubmission(submissionData: { submissionDate: Date; content: string; studentId: string; assignmentId: string }) {
+    createSubmission(submissionData: SubmissionCreateIn) {
         return this.prisma.submission.create({ data: submissionData });
     }
     
-    async updateSubmissionById(id: string, submissionData: { submissionDate?: Date; content?: string; studentId?: string; assignmentId?: string }) {
+    async updateSubmissionById(id: string, submissionData: SubmissionUpdateIn) {
         const findSubmission = await this.getSubmissionById(id);
         if(!findSubmission){
             throw new HttpException('Submission not Found', 404);

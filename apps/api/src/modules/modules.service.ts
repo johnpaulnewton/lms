@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { HttpException } from '@nestjs/common';
+import { ModuleCreateIn, ModuleUpdateIn } from '@repo/api/modules';
 
 @Injectable()
 export class ModulesService {
@@ -14,11 +15,11 @@ export class ModulesService {
         return this.prisma.module.findUnique({ where: {id: id}});
     }
 
-    createModule(moduleData: { title: string; content: string; courseId: string }) {
+    createModule(moduleData: ModuleCreateIn) {
         return this.prisma.module.create({ data: moduleData });
     }
 
-    async updateModuleById(id: string, moduleData: { title?: string; description?: string; courseId?: string }) {
+    async updateModuleById(id: string, moduleData: ModuleUpdateIn) {
         const findModule = await this.getModuleById(id);
         if(!findModule){
             throw new HttpException('Module not Found', 404);

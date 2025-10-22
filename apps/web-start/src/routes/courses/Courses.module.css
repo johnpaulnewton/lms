@@ -1,64 +1,75 @@
 .courseContainer {
-    width: 100%;
-    max-width: 1100px;
-    margin: 2rem auto;
-    font-family: "Segoe UI", sans-serif;
-    color: #111;
-  }
-  
-  .courseTitle {
-    font-size: 1.9rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-  
-  .courseDescription {
-    font-size: 1rem;
-    color: #333;
-    line-height: 1.5;
-    margin-bottom: 2rem;
-  }
-  
-  .section {
-    margin-bottom: 2rem;
-  }
-  
-  .sectionTitle {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #000;
-    padding-bottom: 0.25rem;
-    border-bottom: 2px solid #888;
-  }
-  
-  .list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .item {
-    padding: 0.5rem 0;
-  }
-  
-  .itemHeader {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .itemContent {
-    margin-top: 0.25rem;
-    font-size: 0.95rem;
-    color: #444;
-  }
-  
-  .meta {
-    font-size: 0.8rem;
-    color: #666;
-  }
-  
-  .courseLink {
-    color: #1a73e8;
-    text-decoration: none;
-  }
-  
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.courseTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.courseDescription {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+/* List styling */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.itemHeader strong {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.itemContent {
+  font-size: 1rem;
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}

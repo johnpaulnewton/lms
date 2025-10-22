@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { GradeCreateIn, GradeUpdateIn } from '@repo/api/grades';
+import { Grade } from '../../../../packages/database/generated/client';
 
 @Injectable()
 export class GradesService {
@@ -13,11 +15,11 @@ export class GradesService {
         return this.prisma.grade.findUnique({ where: {id: id}});
     }
 
-    createGrade(gradeData: { gradeValue: number; feedback: string; gradedDate: Date; submissionId: string; graderId: string }) {
+    createGrade(gradeData: GradeCreateIn) {
         return this.prisma.grade.create({ data: gradeData });
     }
     
-    async updateGradeById(id: string, gradeData: { gradeValue?: number; feedback?: string; gradedDate?: Date; submissionId?: string; graderId?: string }) {
+    async updateGradeById(id: string, gradeData: GradeUpdateIn) {
         const findGrade = await this.getGradeById(id);
         if(!findGrade){
             throw new Error('Grade not Found');

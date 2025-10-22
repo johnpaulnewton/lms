@@ -37,7 +37,8 @@
     "@tamagui/stacks": "^1.135.2",
     "@tamagui/text": "^1.135.2",
     "class-validator": "^0.14.2",
-    "dotenv": "^17.2.2"
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.12"
   },
   "packageManager": "npm@10.9.0",
   "workspaces": [

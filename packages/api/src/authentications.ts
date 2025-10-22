@@ -6,8 +6,6 @@ export const AuthenticationOut = z.object({
   userId: z.uuid(),
   provider: z.string(),
   providerId: z.string(),
-  createdAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
 });
 export type AuthenticationOut = z.infer<typeof AuthenticationOut>;
 

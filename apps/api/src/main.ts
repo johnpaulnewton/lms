@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '../../.env' });
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
@@ -8,11 +11,11 @@ async function bootstrap() {
   // Read allowed origins from environment variable
   const origins = process.env.CLIENT_ORIGINS
     ? process.env.CLIENT_ORIGINS.split(',').map((origin) => origin.trim())
-    : ['http://localhost:3001',
-       'http://localhost:3002',
-       'https://lms.jpnewton.workers.dev',
-       'https://f25-cisc474-individual-2zzz.onrender.com' 
-      ];
+    : ['http://localhost:3000',
+      'http://localhost:3001',
+      'https://lms.jpnewton.workers.dev',
+      'https://f25-cisc474-individual-2zzz.onrender.com'
+    ];
   app.enableCors({
     origin: origins,
     credentials: true,

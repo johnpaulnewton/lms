@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { GradesService } from './grades.service';
 import { Get, Post, Patch, Delete, Param, Body } from '@nestjs/common';
-import { CreateGradeDto } from './create-grade.dto';
-import { UpdateGradeDto } from './update-grade.dto';
+import { GradeCreateIn, GradeUpdateIn } from '@repo/api/grades';
+import { Grade } from '../../../../packages/database/generated/client';
 
 @Controller('grades')
 export class GradesController {
@@ -19,12 +19,12 @@ export class GradesController {
     }
 
     @Post()
-    createGrade(@Body() createGradeDto: CreateGradeDto) {
+    createGrade(@Body() createGradeDto: GradeCreateIn) {
         return this.gradesService.createGrade(createGradeDto);
     }
     
     @Patch(':id')
-    updateGradeById(@Param('id') id: string, @Body() updateGradeDto: UpdateGradeDto) {
+    updateGradeById(@Param('id') id: string, @Body() updateGradeDto: GradeUpdateIn) {
         return this.gradesService.updateGradeById(id, updateGradeDto);
     }   
 

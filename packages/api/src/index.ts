@@ -25,16 +25,23 @@ export {
   AuthenticationUpdateIn,
 } from './authentications';
 export {
-  AssignmentGroupCreateIn,
-  AssignmentGroupOut,
-  AssignmentGroupRef,
-  AssignmentGroupUpdateIn,
-  AssignmentGroupsListFilter,
-} from './groups';
-export { RoleCreateIn, RoleOut, RoleUpdateIn, RoleType } from './roles';
-export {
   SubmissionCreateIn,
   SubmissionOut,
   SubmissionUpdateIn,
   SubmissionsListFilter,
 } from './submissions';
+export {
+  EnrollmentCreateIn,
+  EnrollmentOut,
+  EnrollmentUpdateIn,
+} from './enrollments';
+export {
+  GradeCreateIn,
+  GradeOut,
+  GradeUpdateIn,
+} from './grades';
+export {
+  ModuleCreateIn,
+  ModuleOut,
+  ModuleUpdateIn,
+} from './modules';

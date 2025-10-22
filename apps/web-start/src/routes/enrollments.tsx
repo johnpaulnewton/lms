@@ -1,20 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { backendFetcher } from '../integrations/fetcher';
+import { EnrollmentOut } from '@repo/api/enrollments';
 import styles from './Enrollments.module.css';
 
-const CURRENT_USER_ID = 'cmgecorz0000018c7lw0sxk90'; // placeholder
+const CURRENT_USER_ID = 'cmh0lxj6i000018tll1h3gp12'; // placeholder
 
 export const Route = createFileRoute('/enrollments')({
   component: EnrollmentsRouteComponent,
 });
 
 function EnrollmentsRouteComponent() {
-  const { data, refetch, error, isFetching } = useQuery<
-    { 
-      term: string; 
-      course: { id: string; title: string }; 
-    }[]
+  const { data, refetch, error, isFetching } = useQuery<EnrollmentOut[]
   >({
     queryKey: ['enrollments', CURRENT_USER_ID],
     queryFn: backendFetcher('/enrollments/user/' + CURRENT_USER_ID),

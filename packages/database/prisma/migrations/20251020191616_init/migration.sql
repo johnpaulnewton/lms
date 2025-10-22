@@ -1,17 +1,9 @@
--- CreateEnum
-CREATE TYPE "public"."UserRole" AS ENUM ('USER', 'ADMIN');
-
--- CreateEnum
-CREATE TYPE "public"."EnrollmentRole" AS ENUM ('STUDENT', 'INSTRUCTOR');
-
 -- CreateTable
 CREATE TABLE "public"."User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "firstName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
-    "role" "public"."UserRole" NOT NULL,
-    "passwordHash" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -41,7 +33,6 @@ CREATE TABLE "public"."Enrollment" (
     "courseId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "term" TEXT NOT NULL,
-    "role" "public"."EnrollmentRole" NOT NULL,
 
     CONSTRAINT "Enrollment_pkey" PRIMARY KEY ("id")
 );
@@ -61,7 +52,7 @@ CREATE TABLE "public"."Assignment" (
 CREATE TABLE "public"."Submission" (
     "id" TEXT NOT NULL,
     "assignmentId" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
+    "studentId" TEXT NOT NULL,
     "submissionDate" TIMESTAMP(3) NOT NULL,
     "content" TEXT NOT NULL,
 
@@ -73,6 +64,7 @@ CREATE TABLE "public"."Grade" (
     "id" TEXT NOT NULL,
     "submissionId" TEXT NOT NULL,
     "graderId" TEXT NOT NULL,
+    "gradeValue" DOUBLE PRECISION NOT NULL,
     "feedback" TEXT NOT NULL,
     "gradedDate" TIMESTAMP(3) NOT NULL,
 
@@ -91,11 +83,24 @@ CREATE TABLE "public"."Announcement" (
     CONSTRAINT "Announcement_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "public"."Authentication" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "provider" TEXT NOT NULL,
+    "providerId" TEXT NOT NULL,
+
+    CONSTRAINT "Authentication_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Grade_submissionId_key" ON "public"."Grade"("submissionId");
+
+-- CreateIndex
+CREATE INDEX "Authentication_provider_providerId_idx" ON "public"."Authentication"("provider", "providerId");
 
 -- AddForeignKey
 ALTER TABLE "public"."Module" ADD CONSTRAINT "Module_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "public"."Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -113,16 +118,19 @@ ALTER TABLE "public"."Assignment" ADD CONSTRAINT "Assignment_courseId_fkey" FORE
 ALTER TABLE "public"."Submission" ADD CONSTRAINT "Submission_assignmentId_fkey" FOREIGN KEY ("assignmentId") REFERENCES "public"."Assignment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "public"."Submission" ADD CONSTRAINT "Submission_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "public"."Grade" ADD CONSTRAINT "Grade_submissionId_fkey" FOREIGN KEY ("submissionId") REFERENCES "public"."Submission"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Submission" ADD CONSTRAINT "Submission_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "public"."User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "public"."Grade" ADD CONSTRAINT "Grade_graderId_fkey" FOREIGN KEY ("graderId") REFERENCES "public"."User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "public"."Announcement" ADD CONSTRAINT "Announcement_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "public"."Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Grade" ADD CONSTRAINT "Grade_submissionId_fkey" FOREIGN KEY ("submissionId") REFERENCES "public"."Submission"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "public"."Announcement" ADD CONSTRAINT "Announcement_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "public"."User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."Announcement" ADD CONSTRAINT "Announcement_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "public"."Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."Authentication" ADD CONSTRAINT "Authentication_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

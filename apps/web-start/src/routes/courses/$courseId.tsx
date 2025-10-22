@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { backendFetcher } from '../../integrations/fetcher';
 import styles from './Courses.module.css';
+import { CourseOut } from '@repo/api';
 
 export const Route = createFileRoute('/courses/$courseId')({
   component: CourseRouteComponent,
@@ -10,23 +11,7 @@ export const Route = createFileRoute('/courses/$courseId')({
 function CourseRouteComponent() {
   const { courseId } = Route.useParams();
 
-  const { data, refetch, error, isFetching } = useQuery<
-    {
-      id: string;
-      title: string;
-      description: string;
-      announcements: {
-        id: string;
-        authorId: string;
-        title: string;
-        content: string;
-        postedDate: string;
-        author: { firstName: string; lastName: string; id: string };
-      }[];
-      modules: { id: string; title: string; content: string }[];
-      assignments: { id: string; title: string; description: string; dueDate: string }[];
-    }
-  >({
+  const { data, refetch, error, isFetching } = useQuery<CourseOut>({
     queryKey: ['courses', courseId],
     queryFn: backendFetcher('/courses/' + courseId),
     initialData: { id: '', title: '', description: '', announcements: [], modules: [], assignments: [] },

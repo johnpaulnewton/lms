@@ -10,37 +10,32 @@ export type AssignmentRef = z.infer<typeof AssignmentRef>;
 
 // Output DTOs (API responses)
 export const AssignmentOut = z.object({
-  id: z.uuid(),
+  id: z.string().uuid(),
   title: z.string(),
-  description: z.string().nullable(),
-  ownerId: z.uuid(),
-  courseId: z.uuid(),
-  createdAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
+  description: z.string(),
+  dueDate: z.string().datetime(),
 });
 export type AssignmentOut = z.infer<typeof AssignmentOut>;
 
 // Creation DTOs (API request bodies)
 export const AssignmentCreateIn = z.object({
-  title: z.string().min(1),
-  description: z.string().optional().nullable(),
-  ownerId: z.uuid(),
-  courseId: z.uuid(),
+  title: z.string(),
+  description: z.string(),
+  dueDate: z.string().datetime(),
+  courseId: z.string().uuid(),
 });
 export type AssignmentCreateIn = z.infer<typeof AssignmentCreateIn>;
 
 // Update DTOs (API request bodies)
 export const AssignmentUpdateIn = z.object({
-  title: z.string().min(1).optional(),
-  description: z.string().optional().nullable(),
-  ownerId: z.uuid().optional(),
-  courseId: z.uuid().optional(),
+  title: z.string().optional(),
+  description: z.string().optional(),
+  dueDate: z.string().datetime().optional(),
+  courseId: z.string().uuid().optional(),
 });
 export type AssignmentUpdateIn = z.infer<typeof AssignmentUpdateIn>;
 
 // Query DTOs (API query parameters)
 export const AssignmentsListFilter = Pagination.extend({
-  courseId: z.uuid().optional(),
-  ownerId: z.uuid().optional(),
-  titleLike: z.string().optional(),
+
 });
