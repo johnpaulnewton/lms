@@ -10,8 +10,7 @@ export const AnnouncementOut = z.object({
     postedDate: z.string().datetime(),
     author: z.object({
         id: z.string().uuid(),
-        firstName: z.string(),
-        lastName: z.string(),
+        name: z.string(),
     }),
 });
 

@@ -35,8 +35,7 @@ function CourseRouteComponent() {
                 <div className={styles.itemHeader}>
                   <strong>{a.title}</strong>
                   <span className={styles.meta}>
-                    Posted {new Date(a.postedDate).toLocaleDateString()} by {a.author.firstName}{' '}
-                    {a.author.lastName}
+                    Posted {new Date(a.postedDate).toLocaleDateString()} by {a.author.name}
                   </span>
                 </div>
                 <p className={styles.itemContent}>{a.content}</p>
