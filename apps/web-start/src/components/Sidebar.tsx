@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import styles from "./Sidebar.module.css";
+import LogoutButton from './LogoutButton';
 
 export function Sidebar() {
   return (
@@ -12,6 +13,7 @@ export function Sidebar() {
         <Link to="/assignments" className={styles.navLink}>📝 Assignments</Link>
         <Link to="/grades" className={styles.navLink}>📈 Grades & Feedback</Link>
       </nav>
+      <LogoutButton />
     </aside>
   );
 }

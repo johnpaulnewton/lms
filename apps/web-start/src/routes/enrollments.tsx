@@ -1,27 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { backendFetcher } from '../integrations/fetcher';
+import { useApiQuery } from '../integrations/api';
 import { EnrollmentOut } from '@repo/api/enrollments';
 import styles from './Enrollments.module.css';
-
-const CURRENT_USER_ID = 'cmh0lxj6i000018tll1h3gp12'; // placeholder
 
 export const Route = createFileRoute('/enrollments')({
   component: EnrollmentsRouteComponent,
 });
 
 function EnrollmentsRouteComponent() {
-  const { data, refetch, error, isFetching } = useQuery<EnrollmentOut[]
-  >({
-    queryKey: ['enrollments', CURRENT_USER_ID],
-    queryFn: backendFetcher('/enrollments/user/' + CURRENT_USER_ID),
-    initialData: [],
-  });
+  const query = useApiQuery<Array<EnrollmentOut>>(['enrollments', 'me'], '/enrollments/me');
 
-  if (isFetching) return <div>Loading...</div>;
+  const { data, refetch, error, showLoading } = query;
+
+  if (showLoading) return <div>Loading...</div>;
 
   if (error) {
     return <div>Error: {(error as Error).message}</div>;
+  }
+
+  if (!data || data.length === 0) {
+    return <div>No enrollments found.</div>;
   }
 
   return (

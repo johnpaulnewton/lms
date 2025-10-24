@@ -13,12 +13,16 @@ async function bootstrap() {
     ? process.env.CLIENT_ORIGINS.split(',').map((origin) => origin.trim())
     : ['http://localhost:3000',
       'http://localhost:3001',
+      'http://localhost:5173',
       'https://lms.jpnewton.workers.dev',
       'https://f25-cisc474-individual-2zzz.onrender.com'
     ];
   app.enableCors({
     origin: origins,
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    exposedHeaders: ['Content-Length', 'Content-Type'],
   });
   await app.listen(port, host);
 }

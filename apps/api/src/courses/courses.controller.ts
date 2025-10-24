@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Patch, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Param, Body, UseGuards } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CourseCreateIn, CourseUpdateIn } from '@repo/api/courses';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('courses')
 export class CoursesController {
-    constructor(private coursesService: CoursesService) {}
+    constructor(private coursesService: CoursesService) { }
 
     @Get()
     getCourses() {
@@ -12,7 +13,7 @@ export class CoursesController {
     }
 
     @Get(':id')
-    getCourseById(@Param('id') id: string ) {
+    getCourseById(@Param('id') id: string) {
         return this.coursesService.getCourseById(id);
     }
 

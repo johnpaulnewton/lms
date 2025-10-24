@@ -19,9 +19,10 @@ import { SubmissionsModule } from './submissions/submissions.module';
 import { GradesModule } from './grades/grades.module';
 import { AnnouncementsService } from './announcements/announcements.service';
 import { AnnouncementsModule } from './announcements/announcements.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [/*LinksModule,*/UsersModule, PrismaModule, CoursesModule, ModulesModule, EnrollmentsModule, AssignmentsModule, SubmissionsModule, GradesModule, AnnouncementsModule],
+  imports: [/*LinksModule,*/UsersModule, PrismaModule, CoursesModule, ModulesModule, EnrollmentsModule, AssignmentsModule, SubmissionsModule, GradesModule, AnnouncementsModule, AuthModule],
   controllers: [AppController, CoursesController, ModulesController, EnrollmentsController, SubmissionsController],
   providers: [AppService, CoursesService, ModulesService, EnrollmentsService, SubmissionsService, AnnouncementsService],
 })

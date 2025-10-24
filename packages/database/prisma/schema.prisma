@@ -17,8 +17,8 @@ enum Role {
 
 model User {
   id              String           @id @default(cuid())
-  email           String           @unique
-  name            String
+  email           String?          @unique
+  name            String?
   role            Role             @default(STUDENT)
   announcements   Announcement[]
   enrollments     Enrollment[]

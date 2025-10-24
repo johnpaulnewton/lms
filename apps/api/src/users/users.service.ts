@@ -1,7 +1,6 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserCreateIn, UserUpdateIn } from '@repo/api/users';
-import { User } from '../../../../packages/database/generated/client';
 
 @Injectable()
 export class UsersService {
@@ -34,4 +33,8 @@ export class UsersService {
         }
         return this.prisma.user.delete({ where: { id: id } })
     }
-} 
+}
+
+
+
+
