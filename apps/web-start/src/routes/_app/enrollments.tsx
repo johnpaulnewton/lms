@@ -1,10 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useApiQuery } from '../integrations/api';
+import { useApiQuery } from '../../integrations/api';
 import { EnrollmentOut } from '@repo/api/enrollments';
 import styles from './Enrollments.module.css';
 
-export const Route = createFileRoute('/enrollments')({
+export const Route = createFileRoute('/_app/enrollments')({
   component: EnrollmentsRouteComponent,
 });
 
@@ -13,14 +12,20 @@ function EnrollmentsRouteComponent() {
 
   const { data, refetch, error, showLoading } = query;
 
-  if (showLoading) return <div>Loading...</div>;
+  if (showLoading) return <div style={{ marginLeft: '250px', padding: '2rem' }}>
+    Loading...
+  </div>;
 
   if (error) {
-    return <div>Error: {(error as Error).message}</div>;
+    return <div style={{ marginLeft: '250px', padding: '2rem' }}>
+      Error: {(error as Error).message}
+    </div>;
   }
 
   if (!data || data.length === 0) {
-    return <div>No enrollments found.</div>;
+    return <div style={{ marginLeft: '250px', padding: '2rem' }}>
+      No enrollments found.
+    </div>;
   }
 
   return (

@@ -137,7 +137,7 @@ export type CurrentUser = {
   id: string;
   name?: string | null;
   email?: string | null;
-  role?: string | 'STUDENT';
+  role?: 'STUDENT' | 'INSTRUCTOR' | 'ADMIN';
 };
 
 export function useCurrentUser(opts?: { scope?: string }) {

@@ -9,49 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as HomeRouteImport } from './routes/home'
-import { Route as GradesRouteImport } from './routes/grades'
-import { Route as EnrollmentsRouteImport } from './routes/enrollments'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as AssignmentsRouteImport } from './routes/assignments'
-import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CoursesCourseIdRouteImport } from './routes/courses/$courseId'
+import { Route as AppProfileRouteImport } from './routes/_app/profile'
+import { Route as AppGradesRouteImport } from './routes/_app/grades'
+import { Route as AppEnrollmentsRouteImport } from './routes/_app/enrollments'
+import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppAssignmentsRouteImport } from './routes/_app/assignments'
+import { Route as AppCoursesCourseIdRouteImport } from './routes/_app/courses/$courseId'
+import { Route as AppAdminUsersRouteImport } from './routes/_app/admin/users'
+import { Route as AppAdminCoursesRouteImport } from './routes/_app/admin/courses'
 
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GradesRoute = GradesRouteImport.update({
-  id: '/grades',
-  path: '/grades',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnrollmentsRoute = EnrollmentsRouteImport.update({
-  id: '/enrollments',
-  path: '/enrollments',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AssignmentsRoute = AssignmentsRouteImport.update({
-  id: '/assignments',
-  path: '/assignments',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const AppRouteRoute = AppRouteRouteImport.update({
+  id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -59,103 +35,133 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CoursesCourseIdRoute = CoursesCourseIdRouteImport.update({
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppGradesRoute = AppGradesRouteImport.update({
+  id: '/grades',
+  path: '/grades',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppEnrollmentsRoute = AppEnrollmentsRouteImport.update({
+  id: '/enrollments',
+  path: '/enrollments',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppAssignmentsRoute = AppAssignmentsRouteImport.update({
+  id: '/assignments',
+  path: '/assignments',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppCoursesCourseIdRoute = AppCoursesCourseIdRouteImport.update({
   id: '/courses/$courseId',
   path: '/courses/$courseId',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppAdminUsersRoute = AppAdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppAdminCoursesRoute = AppAdminCoursesRouteImport.update({
+  id: '/admin/courses',
+  path: '/admin/courses',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
-  '/assignments': typeof AssignmentsRoute
-  '/dashboard': typeof DashboardRoute
-  '/enrollments': typeof EnrollmentsRoute
-  '/grades': typeof GradesRoute
   '/home': typeof HomeRoute
-  '/profile': typeof ProfileRoute
-  '/courses/$courseId': typeof CoursesCourseIdRoute
+  '/assignments': typeof AppAssignmentsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/enrollments': typeof AppEnrollmentsRoute
+  '/grades': typeof AppGradesRoute
+  '/profile': typeof AppProfileRoute
+  '/admin/courses': typeof AppAdminCoursesRoute
+  '/admin/users': typeof AppAdminUsersRoute
+  '/courses/$courseId': typeof AppCoursesCourseIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
-  '/assignments': typeof AssignmentsRoute
-  '/dashboard': typeof DashboardRoute
-  '/enrollments': typeof EnrollmentsRoute
-  '/grades': typeof GradesRoute
   '/home': typeof HomeRoute
-  '/profile': typeof ProfileRoute
-  '/courses/$courseId': typeof CoursesCourseIdRoute
+  '/assignments': typeof AppAssignmentsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/enrollments': typeof AppEnrollmentsRoute
+  '/grades': typeof AppGradesRoute
+  '/profile': typeof AppProfileRoute
+  '/admin/courses': typeof AppAdminCoursesRoute
+  '/admin/users': typeof AppAdminUsersRoute
+  '/courses/$courseId': typeof AppCoursesCourseIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
-  '/assignments': typeof AssignmentsRoute
-  '/dashboard': typeof DashboardRoute
-  '/enrollments': typeof EnrollmentsRoute
-  '/grades': typeof GradesRoute
+  '/_app': typeof AppRouteRouteWithChildren
   '/home': typeof HomeRoute
-  '/profile': typeof ProfileRoute
-  '/courses/$courseId': typeof CoursesCourseIdRoute
+  '/_app/assignments': typeof AppAssignmentsRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/enrollments': typeof AppEnrollmentsRoute
+  '/_app/grades': typeof AppGradesRoute
+  '/_app/profile': typeof AppProfileRoute
+  '/_app/admin/courses': typeof AppAdminCoursesRoute
+  '/_app/admin/users': typeof AppAdminUsersRoute
+  '/_app/courses/$courseId': typeof AppCoursesCourseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/admin'
+    | '/home'
     | '/assignments'
     | '/dashboard'
     | '/enrollments'
     | '/grades'
-    | '/home'
     | '/profile'
+    | '/admin/courses'
+    | '/admin/users'
     | '/courses/$courseId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/admin'
+    | '/home'
     | '/assignments'
     | '/dashboard'
     | '/enrollments'
     | '/grades'
-    | '/home'
     | '/profile'
+    | '/admin/courses'
+    | '/admin/users'
     | '/courses/$courseId'
   id:
     | '__root__'
     | '/'
-    | '/admin'
-    | '/assignments'
-    | '/dashboard'
-    | '/enrollments'
-    | '/grades'
+    | '/_app'
     | '/home'
-    | '/profile'
-    | '/courses/$courseId'
+    | '/_app/assignments'
+    | '/_app/dashboard'
+    | '/_app/enrollments'
+    | '/_app/grades'
+    | '/_app/profile'
+    | '/_app/admin/courses'
+    | '/_app/admin/users'
+    | '/_app/courses/$courseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
-  AssignmentsRoute: typeof AssignmentsRoute
-  DashboardRoute: typeof DashboardRoute
-  EnrollmentsRoute: typeof EnrollmentsRoute
-  GradesRoute: typeof GradesRoute
+  AppRouteRoute: typeof AppRouteRouteWithChildren
   HomeRoute: typeof HomeRoute
-  ProfileRoute: typeof ProfileRoute
-  CoursesCourseIdRoute: typeof CoursesCourseIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -163,39 +169,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/grades': {
-      id: '/grades'
-      path: '/grades'
-      fullPath: '/grades'
-      preLoaderRoute: typeof GradesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/enrollments': {
-      id: '/enrollments'
-      path: '/enrollments'
-      fullPath: '/enrollments'
-      preLoaderRoute: typeof EnrollmentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/assignments': {
-      id: '/assignments'
-      path: '/assignments'
-      fullPath: '/assignments'
-      preLoaderRoute: typeof AssignmentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AppRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -205,26 +183,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/courses/$courseId': {
-      id: '/courses/$courseId'
+    '/_app/profile': {
+      id: '/_app/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/grades': {
+      id: '/_app/grades'
+      path: '/grades'
+      fullPath: '/grades'
+      preLoaderRoute: typeof AppGradesRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/enrollments': {
+      id: '/_app/enrollments'
+      path: '/enrollments'
+      fullPath: '/enrollments'
+      preLoaderRoute: typeof AppEnrollmentsRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/assignments': {
+      id: '/_app/assignments'
+      path: '/assignments'
+      fullPath: '/assignments'
+      preLoaderRoute: typeof AppAssignmentsRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/courses/$courseId': {
+      id: '/_app/courses/$courseId'
       path: '/courses/$courseId'
       fullPath: '/courses/$courseId'
-      preLoaderRoute: typeof CoursesCourseIdRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppCoursesCourseIdRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/admin/users': {
+      id: '/_app/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AppAdminUsersRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/admin/courses': {
+      id: '/_app/admin/courses'
+      path: '/admin/courses'
+      fullPath: '/admin/courses'
+      preLoaderRoute: typeof AppAdminCoursesRouteImport
+      parentRoute: typeof AppRouteRoute
     }
   }
 }
 
+interface AppRouteRouteChildren {
+  AppAssignmentsRoute: typeof AppAssignmentsRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppEnrollmentsRoute: typeof AppEnrollmentsRoute
+  AppGradesRoute: typeof AppGradesRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppAdminCoursesRoute: typeof AppAdminCoursesRoute
+  AppAdminUsersRoute: typeof AppAdminUsersRoute
+  AppCoursesCourseIdRoute: typeof AppCoursesCourseIdRoute
+}
+
+const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppAssignmentsRoute: AppAssignmentsRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppEnrollmentsRoute: AppEnrollmentsRoute,
+  AppGradesRoute: AppGradesRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppAdminCoursesRoute: AppAdminCoursesRoute,
+  AppAdminUsersRoute: AppAdminUsersRoute,
+  AppCoursesCourseIdRoute: AppCoursesCourseIdRoute,
+}
+
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
+  AppRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
-  AssignmentsRoute: AssignmentsRoute,
-  DashboardRoute: DashboardRoute,
-  EnrollmentsRoute: EnrollmentsRoute,
-  GradesRoute: GradesRoute,
+  AppRouteRoute: AppRouteRouteWithChildren,
   HomeRoute: HomeRoute,
-  ProfileRoute: ProfileRoute,
-  CoursesCourseIdRoute: CoursesCourseIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

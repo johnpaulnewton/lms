@@ -10,7 +10,6 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import TanStackQueryDevtools from '../integrations/devtools';
 import appCss from '../styles.css?url';
 import type { QueryClient } from '@tanstack/react-query';
-import { Sidebar } from '../components/Sidebar';
 
 export interface MyRouterContext {
   queryClient: QueryClient;
@@ -48,12 +47,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div style={{ display: 'flex', height: '100vh' }}>
-          <Sidebar /> 
-          <main style={{ flex: 1, padding: '2rem', overflowY: 'auto' }}>
-            {children}
-          </main>
-        </div>
+        {children}
 
         <TanStackDevtools
           config={{

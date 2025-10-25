@@ -1,0 +1,81 @@
+/* Home Page - Profile Setup Form (Simple) */
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9fafb;
+    padding: 2rem;
+  }
+  
+  .formCard {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .formTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 1.5rem 0;
+  }
+  
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    display: block;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  .text {
+    color: #6b7280;
+    margin: 0 0 1.5rem 0;
+  }
+  
+  .select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
+  .select:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 0.75rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .submitButton:hover:not(:disabled) {
+    background: #2563eb;
+  }
+  
+  .submitButton:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+  
+  .loadingMessage {
+    padding: 2rem;
+    text-align: center;
+    color: #6b7280;
+  }

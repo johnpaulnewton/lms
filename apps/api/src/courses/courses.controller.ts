@@ -17,16 +17,19 @@ export class CoursesController {
         return this.coursesService.getCourseById(id);
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Post()
     createCourse(@Body() createCourseDto: CourseCreateIn) {
         return this.coursesService.createCourse(createCourseDto);
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Patch(':id')
     updateCourseById(@Param('id') id: string, @Body() updateCourseDto: CourseUpdateIn) {
         return this.coursesService.updateCourseById(id, updateCourseDto);
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Delete(':id')
     deleteCourseById(@Param('id') id: string) {
         return this.coursesService.deleteCourseById(id);
