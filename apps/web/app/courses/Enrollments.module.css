@@ -1,42 +1,75 @@
 .enrollmentsContainer {
-  width: 100%;
-  max-width: 1300px;
-  margin: 2rem auto; 
-  font-family: sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-left: 250px;
 }
 
-.enrollmentsHeader,
-.enrollmentItem {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 2rem 0;
 }
 
 .enrollmentsHeader {
-  font-weight: bold;
-  border-bottom: 2px solid #ccc;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: #f3f4f6;
+  border-radius: 6px 6px 0 0;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .enrollmentsList {
   list-style: none;
   padding: 0;
-  margin: 1rem 0 0 0;
+  margin: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0 0 6px 6px;
 }
 
 .enrollmentItem {
-  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.enrollmentItem:last-child {
+  border-bottom: none;
+}
+
+.enrollmentItem:hover {
+  background: #f9fafb;
 }
 
 .courseLink {
-  color: #1a73e8;
+  color: #3b82f6;
   text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.2s;
 }
 
 .courseLink:hover {
+  color: #2563eb;
   text-decoration: underline;
 }
 
-.courseLink:visited {
-  color: #1a73e8;
+.enrollmentItem span:last-child {
+  color: #6b7280;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: #f3f4f6;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
 }

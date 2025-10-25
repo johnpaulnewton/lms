@@ -11,14 +11,19 @@ export default function Enrollments({
 
   return (
     <div className={styles.enrollmentsContainer}>
+      <h1 className={styles.pageTitle}>My Courses</h1>
+
       <div className={styles.enrollmentsHeader}>
         <span>Course</span>
         <span>Term</span>
       </div>
+
       <ul className={styles.enrollmentsList}>
         {data.map((e) => (
           <li key={e.course.id} className={styles.enrollmentItem}>
-            <a href={`/courses/${e.course.id}`} className={styles.courseLink}>
+            <a href={`/courses/${e.course.id}`}
+              className={styles.courseLink}
+            >
               {e.course.title}
             </a>
             <span>{e.term}</span>
